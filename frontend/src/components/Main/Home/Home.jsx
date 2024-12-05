@@ -4,7 +4,6 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import utilsToken from "../../../utils/token.js";
 import { AuthContext } from "../../../context/AuthContext";
-import serviceMovies from '../../../services/movies.service.js';
 import { API_URL } from '../../../config/config.js';
 
 const Home = () => {
