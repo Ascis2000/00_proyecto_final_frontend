@@ -1,0 +1,47 @@
+Ejemplo:
+// llamara al backend, a http://localhost:3000/auth/register
+<form action="http://localhost:3000/auth/register" method="POST">
+  <label>
+    Nombre:
+    <input type="text" name="nombre" required />
+  </label>
+  <label>
+    Contraseña:
+    <input type="password" name="password" required />
+  </label>
+  <button type="submit">Registrar</button>
+</form>
+
+
+
+El frontend hace una solicitud GET a esta ruta para mostrar información del perfil al usuario
+useEffect(() => {
+  fetch('http://localhost:3000/user/profile', {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    }
+  })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(err => console.error(err));
+}, []);
+
+
+El frontend hace una solicitud GET a esta ruta para modificar información del perfil al usuario
+const updateProfile = (updatedData) => {
+  fetch('http://localhost:3000/user/profile', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    },
+    body: JSON.stringify(updatedData)
+  })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(err => console.error(err));
+};
+
+// Llamar a la función con los datos actualizados
+updateProfile({ name: 'NuevoNombre', email: 'nuevo@example.com' });

@@ -1,0 +1,150 @@
+
+.boxMovies {
+    width: 100%;
+    padding: 20px;
+}
+
+.boxMovies h3 {
+    margin: 5px 0px 5px 0px;
+}
+
+.info {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.movie-grid {
+    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.movie-card {
+    width: 100%;
+    height: 100%; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between; 
+    
+    color: black;
+    padding: 20px;
+    text-align: center;
+
+    cursor: default;
+
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+    transition: box-shadow 0.3s ease;
+    
+    background: linear-gradient(180deg, #ffffff, #c8e3fd);
+}
+
+.movie-card:hover {
+    box-shadow: 0 0 20px rgba(253, 254, 254, 0.937);
+}
+
+.movie-card .box_data1 {
+    max-height: 200px; /* Altura máxima */
+    width: 100%; /* Mantener proporción */
+    margin: 0 auto; 
+    margin-bottom: 10px;
+    border-radius: 5px 5px 6px 6px;
+    background-color: rgb(20, 24, 45);
+    box-shadow: 0 1px 2px rgba(164, 194, 243, 0.412);
+}
+
+.movie-card h2{
+    color:#3c536b;
+    margin: 0px 0px 0px 0px;
+
+    font-size: 1.1em;
+    border-radius: 0px 0px 5px 5px;
+    background-color: rgb(255, 253, 150);
+}
+
+.movie-card .box_data2 {
+    background-color: rgb(242, 250, 255);
+    width: 100%;
+    padding: 10px; 
+    margin-bottom: 5px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+
+.movie-card .boxRatingStars {
+    width: 100%; /* Mantener proporción */
+    margin: 0 auto; 
+    margin-top: 15px;
+
+}
+
+.movie-card .boxBotonera {
+    gap: 10px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: flex-end; 
+    margin-top: 30px;
+}
+
+.movie-card .boxBotonera i {
+    font-size: 15px; 
+    cursor: pointer; 
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.movie-card img {
+    width: 50%; 
+    height: 100px; 
+    
+    overflow: clip;
+    overflow-clip-margin: content-box;
+
+    display: block; 
+    margin: 5px auto; 
+    border-radius: 5px 5px 5px 5px;
+}
+
+/* ******************************* */
+
+.boxMain i.fa-star.on {
+    color: rgb(241, 245, 5); 
+    text-shadow: 0 0 2px rgba(80, 82, 73, 0.897);
+}
+
+/* ******************************* */
+
+.movie-card .boxBotonera i:hover {
+    transform: scale(1.2);
+    color: #007bff; 
+}
+
+.movie-card .boxBotonera i.fa-edit:hover {
+    color: rgb(70, 153, 35); 
+}
+
+.movie-card .boxBotonera i.fa-trash-alt:hover {
+    color: red; 
+}
+
+
+
+/* Ajustes para pantallas más pequeñas */
+@media (max-width: 1024px) {
+    .movie-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+    }
+}
+
+@media (max-width: 768px) {
+    .movie-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+    }
+}
+
+@media (max-width: 480px) {
+    .movie-grid {
+        grid-template-columns: 1fr; /* 1 columna */
+    }
+}

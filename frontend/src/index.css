@@ -1,0 +1,74 @@
+
+:root {
+	width: 100%;
+	padding: 0px;
+	margin: 0 auto;
+
+	color: #213547;
+	line-height: 1.5;
+	font-weight: 400;
+	font-family: 'Barlow Semi Condensed', Helvetica, 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	height:100%;
+	min-width: 100px;
+	
+	display: flex;
+	flex-direction: column;
+	background-color: #90b0ba;
+}
+
+.boxApp {
+	width: 100%;
+	padding: 10px;
+	
+	display: flex;
+	flex-wrap: wrap;
+    flex-direction: column;
+}
+
+a {
+	color: #f2e753;
+	font-weight: 500;
+	text-decoration: inherit;
+}
+
+a:hover {
+	color: #f2e753;
+}
+
+h1 {
+	font-size: 1.5em;
+	line-height: 1.1;
+}
+
+ul {
+	margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+button {
+	font-size: 1em;
+	font-weight: 500;
+	font-family: inherit;
+}
+
+button:focus,
+button:focus-visible {
+	outline: 4px auto -webkit-focus-ring-color;
+}
+
+input, textarea {
+	font-family: 'Barlow Semi Condensed', Helvetica, 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+
+
+

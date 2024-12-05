@@ -1,0 +1,58 @@
+
+.boxDetailsMovie {
+    width: 100%;
+    padding: 20px;
+    margin: 20px auto;
+
+    overflow: auto;
+    border-radius: 5px;
+    background-color: rgb(37, 62, 91);
+    box-shadow: inset 0 8px 10px rgba(3, 17, 26, 0.862), 0 4px 10px rgba(0, 0, 0, 0.1);
+
+    line-height: 1.4;
+    border: 1px solid rgb(94, 125, 138);
+}
+
+.boxDetailsMovie h2 {
+    margin: 4px auto;
+}
+
+.leftSection,
+.rightSection {
+    flex: 1;
+    min-width: 280px;
+}
+
+.leftSection {
+    text-align: left;
+}
+
+.leftSection img {
+    max-width: 100%;
+    height: auto;
+    margin: 10px 0;
+    max-height: 200px;
+
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.leftSection p,
+.rightSection p {
+    margin: 8px 0;
+}
+
+.rightSection {
+    display: flex;
+    flex-direction: column;
+}
+
+.rightSection p {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.rightSection p strong {
+    color: rgb(235, 217, 15);
+}
