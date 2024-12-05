@@ -19,7 +19,7 @@ const Home = () => {
 
 		const fetchInicio = async () => {
 			try {
-				const response = await fetch(`${API_URL}/`, {
+				const response = await fetch(`${API_URL}`, {
 				//const response = await fetch(`http://localhost:3000/`, {
 					method: "GET",
 					headers: { "Content-Type": "application/json" },
