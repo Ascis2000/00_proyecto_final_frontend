@@ -1,0 +1,74 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(29, 29, 27, 0.5); /* Fondo semi-transparente oscuro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+
+    .modal-content {
+        background: #FFFFFF; /* Fondo blanco */
+        padding: 2rem;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 400px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+        h2 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: #1D1D1B; /* Negro para títulos */
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+            input {
+                padding: 0.5rem;
+                border: 1px solid #CCC;
+                border-radius: 5px;
+                font-size: 1rem;
+
+                &:focus {
+                    border-color: #E2007E; /* Fucsia */
+                    outline: none;
+                }
+            }
+
+            .button {
+                background: #E2007E; /* Botón con color principal */
+                color: #FFFFFF; /* Blanco */
+                border: none;
+                padding: 0.5rem 1rem;
+                border-radius: 5px;
+                font-size: 1rem;
+                cursor: pointer;
+                transition: background 0.3s ease;
+
+                &:hover {
+                    background: #A5165B; /* Segundo tono más oscuro */
+                }
+            }
+        }
+
+        .close {
+            margin-top: 1rem;
+            background: #F45540; /* Color complementario */
+            color: #FFFFFF; /* Blanco */
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+
+            &:hover {
+                background: #CC0000; /* Más oscuro para el hover */
+            }
+        }
+    }
+}
