@@ -1,3 +1,93 @@
-footer {
-    bottom: 100%;
+#footer {
+    background-color: #222;
+    color: #fff;
+    padding: 10px 0; /* Reducir el padding superior e inferior */
+    font-size: 14px; /* Reducir el tamaño de la fuente general */
+
+    /* Contenedor principal */
+    .container.widget__container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 15px; /* Reducir el espacio entre las columnas */
+    }
+
+    /* Widgets */
+    .widget__wrapper {
+        margin-bottom: 10px; /* Reducir margen entre widgets */
+        flex: 1 1 30%; /* Asegura que cada widget tenga una ocupación uniforme */
+    }
+
+    a {
+        color: #bbb;
+        font-size: 14px; /* Reducir el tamaño de los enlaces */
+    }
+
+    /* Sección de créditos */
+    .footer__credits {
+        color: #bbb;
+        font-size: 12px;
+        text-align: left; /* Alineamos a la izquierda para que se vea mejor en la misma fila */
+        margin-top: 5px; /* Reducir espacio entre la parte superior y los créditos */
+        margin-bottom: 5px; /* Reducir el espacio inferior */
+
+        .czr-copyright {
+            margin-bottom: 5px;
+        }
+
+        .czr-credits {
+            margin-bottom: 0;
+        }
+
+        .czr-wp-powered {
+            font-size: 10px; /* Reducir aún más el tamaño de la fuente */
+            margin-top: 5px;
+        }
+
+        .czr-designer-text {
+            font-style: italic;
+        }
+    }
+
+    /* Sección de enlaces sociales */
+    .social-links {
+        display: flex; /* Cambiar a flex para alinearlos horizontalmente */
+        gap: 15px; /* Reducir el espacio entre los íconos */
+        align-items: center; /* Asegura que los íconos estén alineados verticalmente */
+        justify-content: flex-start; /* Alineamos a la izquierda */
+
+        ul.socials {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 15px; /* Reducir espacio entre los íconos */
+        }
+
+        li {
+            a {
+                font-size: 18px; /* Reducir el tamaño de los íconos */
+                color: #fff;
+                text-decoration: none;
+            }
+        }
+    }
+
+    /* Estilo para las imágenes */
+    .widget_media_image {
+        text-align: center;
+
+        img {
+            max-width: 80%; /* Reducir el tamaño de la imagen */
+            height: auto;
+        }
+    }
+
+    /* Columna final para los créditos y enlaces sociales */
+    .colophon__row {
+        display: flex;
+        justify-content: space-between; /* Asegura que los elementos estén uno al lado del otro */
+        align-items: center; /* Alineación vertical de los elementos */
+        flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+        gap: 10px;
+    }
 }

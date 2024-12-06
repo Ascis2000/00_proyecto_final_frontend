@@ -4,6 +4,8 @@ import "../../styles/components/_Header.scss";
 import LoginForm from "./LoginForm";
 import axios from "axios";
 import Cookies from 'js-cookie';
+import Logo from '../../assets/img/logo.png'; // Ruta de la imagen
+
 
 
 const Header = () => {
@@ -27,6 +29,7 @@ const Header = () => {
   return (
     <>
       <header className="navbar">
+      <img classname ="logo" src={Logo} alt="Federacion estatal LGTBI+" />
         <div className="nav-items">
           <button className="button"><Link to="/" className="link">Home</Link></button>
           {!isAuthenticated ? (
@@ -43,7 +46,6 @@ const Header = () => {
           )}
         </div>
       </header>
-
       {/* Mostrar LoginForm si showLogin es true */}
       {showLogin && (
         <LoginForm onClose={() => setShowLogin(false)} onLogin={handleLogin} />
