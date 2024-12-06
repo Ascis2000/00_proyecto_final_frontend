@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/components/_Header.scss";
 import LoginForm from "./LoginForm";
-import RegisterForm from "./RegisterForm";
 import axios from "axios";
 import Cookies from 'js-cookie';
 
@@ -12,7 +11,6 @@ const Header = () => {
 
   const [isAuthenticated, setIsAuthenticated] = useState(valor);
   const [showLogin, setShowLogin] = useState(false);
-  const [showRegister, setShowRegister] = useState(false);
 
   const handleLogin = () => setIsAuthenticated(true);
   const handleLogout = async () => {
@@ -33,9 +31,6 @@ const Header = () => {
           <button className="button"><Link to="/" className="link">Home</Link></button>
           {!isAuthenticated ? (
             <>
-              <button onClick={() => setShowRegister(true)} className="button"> 
-                Registrarse
-              </button>
               <button onClick={() => setShowLogin(true)} className="button">
                 Login
               </button>
@@ -52,11 +47,6 @@ const Header = () => {
       {/* Mostrar LoginForm si showLogin es true */}
       {showLogin && (
         <LoginForm onClose={() => setShowLogin(false)} onLogin={handleLogin} />
-      )}
-
-      {/* Mostrar RegisterForm si showRegister es true */}
-      {showRegister && (
-        <RegisterForm onClose={() => setShowRegister(false)} />
       )}
     </>
   );
