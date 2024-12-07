@@ -12,7 +12,7 @@ const ChartContainer = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get(`${apiUrl}/api/users`);
+        const response = await axios.get(`${apiUrl}api/users`);
         setUsers(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
