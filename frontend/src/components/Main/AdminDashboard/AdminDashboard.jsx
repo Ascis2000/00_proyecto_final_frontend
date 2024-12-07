@@ -1,12 +1,12 @@
 import React from 'react';
-import ChartPerson from './ChartPerson';
+import ChartContainer from './ChartContainer';
 import ChartSanitary from './ChartSanitary';
 
-function AdminDashboard() {
+function ChartDashboard() {
   return (
     <div>
       <article className="echarts-for-react">
-        <ChartPerson />
+        <ChartContainer />
       </article>
       <article className="echarts-for-react">
         <ChartSanitary />
@@ -15,4 +15,4 @@ function AdminDashboard() {
   );
 }
 
-export default AdminDashboard;
+export default ChartDashboard;
