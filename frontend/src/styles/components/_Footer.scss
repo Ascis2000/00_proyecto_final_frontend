@@ -1,0 +1,124 @@
+#footer {
+    background-color: #222;
+    color: #fff;
+    padding: 20px 0; /* Espaciado general del footer */
+    font-size: 14px;
+  
+    /* Primera fila: Widgets (Logo, contacto, enlaces legales) */
+    .footer__widgets {
+      display: flex;
+      justify-content: space-between; /* Distribuye las columnas */
+      align-items: flex-start; /* Alinea verticalmente */
+      flex-wrap: wrap; /* Permite que las columnas se ajusten en pantallas pequeñas */
+      gap: 20px;
+  
+      .footer__column {
+        flex: 1 1 30%; /* Tres columnas con igual proporción */
+        text-align: center; /* Texto centrado inicialmente */
+  
+        &--left {
+          text-align: left; /* Alineación izquierda para el logo */
+        }
+  
+        &--center {
+          text-align: center; /* Alineación centrada */
+        }
+  
+        &--right {
+          text-align: right; /* Alineación derecha */
+        }
+  
+        img.footer__logo {
+          max-width: 70%; /* Ajusta el tamaño del logo */
+          height: auto;
+          margin-bottom: 10px; /* Espaciado debajo del logo */
+        }
+  
+        p {
+          margin: 5px 0; /* Reduce márgenes entre párrafos */
+          font-size: 12px; /* Texto más compacto */
+        }
+  
+        a {
+          color: #bbb;
+          text-decoration: none;
+  
+          &:hover {
+            color: #fff;
+          }
+        }
+      }
+    }
+  
+    /* Segunda fila: Colophon (Créditos y redes sociales) */
+    .footer__colophon {
+      margin-top: 15px;
+      padding-top: 10px;
+      border-top: 1px solid #444; /* Línea divisoria */
+      display: flex;
+      justify-content: space-between; /* Créditos a la izquierda, redes sociales a la derecha */
+      align-items: center;
+      flex-wrap: wrap; /* Ajuste en pantallas pequeñas */
+      gap: 15px;
+  
+      .footer__credits {
+        flex: 1 1 auto;
+        font-size: 12px;
+        text-align: left;
+  
+        p {
+          margin: 0; /* Elimina márgenes innecesarios */
+        }
+  
+        a {
+          color: #bbb;
+          text-decoration: none;
+  
+          &:hover {
+            color: #fff;
+          }
+        }
+      }
+  
+      .footer__socials {
+        flex: 1 1 auto;
+        list-style: none;
+        display: flex;
+        justify-content: flex-end; /* Alinea las redes sociales a la derecha */
+        gap: 10px;
+  
+        li a {
+          font-size: 18px; /* Tamaño de los íconos */
+          color: #fff;
+          text-decoration: none;
+  
+          &:hover {
+            color: #bbb;
+          }
+        }
+      }
+    }
+  
+    /* Responsividad para pantallas pequeñas */
+    @media (max-width: 768px) {
+      .footer__widgets {
+        flex-direction: column; /* Apila las columnas */
+        gap: 20px; /* Espaciado entre las secciones */
+      }
+  
+      .footer__column {
+        text-align: center; /* Todo centrado en móvil */
+      }
+  
+      .footer__colophon {
+        flex-direction: column; /* Créditos y redes sociales apilados */
+        text-align: center;
+  
+        .footer__credits,
+        .footer__socials {
+          text-align: center;
+        }
+      }
+    }
+  }
+  

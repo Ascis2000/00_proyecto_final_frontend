@@ -1,0 +1,39 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #ffffff; /* Color principal (Fucsia) */
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    z-index: 1000;
+    left: 0;
+    border-bottom: #E2007E 1px solid;
+    border-top: #E2007E;
+
+    .nav-items {
+        display: flex;
+        gap: 1rem;
+        margin: 10px 90px 0px 0px;
+
+        .button {
+            padding: 0.5rem 1rem;
+            background: #44BAC1; /* Color complementario */
+            color: #FFFFFF; /* Blanco para contraste */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            height: 50px;
+            width: 100px;
+
+            &:hover {
+                background: #9C4AA0; /* Segundo color complementario */
+            }
+        }
+    }
+}
+
+img {
+    height: 70px;  
+    margin-left: 60px;
+}

@@ -1,0 +1,33 @@
+.chart-container {
+    text-align: center;
+    margin: 20px;
+}
+
+.chart-heading {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.chart-button {
+    background-color: #44bac1;
+    /* Color de fondo del botón */
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.chart-button:hover {
+    background-color: #9c4aa0;
+}
