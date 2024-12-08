@@ -40,7 +40,7 @@ const Header = () => {
             </>
           ) : (
             <>
-              <button className="button"> <Link to="/profile" className="link">Perfil de Usuario</Link></button>
+              <button className="button"> <Link to="/admin" className="link">Dashboard</Link></button>
               <button  onClick={handleLogout} className="button">Logout</button>
             </>
           )}
