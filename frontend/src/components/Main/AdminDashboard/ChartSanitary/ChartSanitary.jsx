@@ -11,7 +11,7 @@ const ChartSanitary = () => {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await axios.get(`${API_URL}/api/profesionales`);
+                const response = await axios.get(`${API_URL}api/profesionales`);
                 setUsers(response.data);
             } catch (error) {
                 console.error('Error fetching data:', error);
