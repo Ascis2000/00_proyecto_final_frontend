@@ -2,7 +2,7 @@ import React from 'react';
 import ReactECharts from 'echarts-for-react';
 
 const ChartPerson = ({ title, data }) => {
-  const colors = ['#44BAC1', '#9C4AA0', '#FFB024', '#F45540', '#A5165B', '#E2007E', '#1D1D1B'];
+  const colors = ['#44BAC1', '#9C4AA0', '#FFB024', '#F45540', '#A5165B', '#E2007E', '#1D1D1B','#71226E', '#36C49E'];
 
   const option = {
     tooltip: {
