@@ -1,6 +1,6 @@
 import React from 'react';
 import ChartContainer from './ChartContainer';
-//import ChartSanitary from './ChartSanitary';
+import ChartSanitary from './ChartSanitary';
 
 function ChartDashboard() {
   return (
@@ -8,9 +8,9 @@ function ChartDashboard() {
       <article className="echarts-for-react">
         <ChartContainer />
       </article>
-      {/* <article className="echarts-for-react">
+      <article className="echarts-for-react">
         <ChartSanitary />
-      </article> */}
+      </article>
     </div>
   );
 }
