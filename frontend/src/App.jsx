@@ -7,16 +7,17 @@ import Header from './components/Header';
 import Main from './components/Main';
 import Footer from './components/Footer';
 
+
 const App = () => {
 	return (
 		<div className="boxApp">
-		<AuthProvider>
-			<BrowserRouter>
-				<Header />
-				<Main />
-				<Footer />
-			</BrowserRouter>
-		</AuthProvider>
+			<AuthProvider>
+				<BrowserRouter>
+					<Header />
+					<Main/>
+					<Footer />
+				</BrowserRouter>
+			</AuthProvider>
 		</div>
 	);
 };

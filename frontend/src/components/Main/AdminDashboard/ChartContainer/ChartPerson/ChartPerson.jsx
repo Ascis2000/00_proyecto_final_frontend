@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import ChartPie from './ChartPie';
 import '../../../../../styles/components/_ChartsContainer.scss'
 
-// Helper para agrupar datos de forma segura
 const groupBy = (key, data = []) => {
   const groups = data.reduce((acc, item) => {
     if (item[key] !== undefined) {
@@ -14,13 +13,13 @@ const groupBy = (key, data = []) => {
 };
 
 const ChartPerson = ({ users }) => {
-  const [visibleChart, setVisibleChart] = useState(null); // Estado para controlar qué gráfica está visible
+  const [visibleChart, setVisibleChart] = useState(null); 
 
   if (!Array.isArray(users) || users.length === 0) {
     return <p>No hay datos disponibles para mostrar.</p>;
   }
 
-  // Función para manejar la visibilidad
+
   const toggleChart = (chartName) => {
     setVisibleChart((prev) => (prev === chartName ? null : chartName));
   };
@@ -29,7 +28,6 @@ const ChartPerson = ({ users }) => {
     <div className="chart-container">
       <h2 className="chart-heading">Selecciona una categoría:</h2>
 
-      {/* Botones para controlar la visibilidad */}
       <div className="button-container">
         <button className="chart-button" onClick={() => toggleChart('pais')}>
           Distribución por País
@@ -37,7 +35,7 @@ const ChartPerson = ({ users }) => {
         <button className="chart-button" onClick={() => toggleChart('genero')}>
           Distribución por Género
         </button>
-        <button className="chart-button" onClick={() => toggleChart('orientacion')}>
+        <button className="chart-button" onClick={() => toggleChart('orien_sex')}>
           Distribución por Orientación Sexual
         </button>
         <button className="chart-button" onClick={() => toggleChart('edad')}>
@@ -45,10 +43,9 @@ const ChartPerson = ({ users }) => {
         </button>
       </div>
 
-      {/* Mostrar gráficos según el botón seleccionado */}
       {visibleChart === 'pais' && <ChartPie title="Distribución por País" data={groupBy('pais', users)} />}
       {visibleChart === 'genero' && <ChartPie title="Distribución por Género" data={groupBy('genero', users)} />}
-      {visibleChart === 'orientacion' && <ChartPie title="Distribución por Orientación Sexual" data={groupBy('orientacion', users)} />}
+      {visibleChart === 'orien_sex' && <ChartPie title="Distribución por Orientación Sexual" data={groupBy('orien_sex', users)} />}
       {visibleChart === 'edad' && <ChartPie title="Distribución por Edad" data={groupBy('edad', users)} />}
     </div>
   );

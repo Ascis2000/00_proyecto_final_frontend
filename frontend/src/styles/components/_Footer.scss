@@ -1,93 +1,168 @@
+
 #footer {
-    background-color: #222;
-    color: #fff;
-    padding: 10px 0; /* Reducir el padding superior e inferior */
-    font-size: 14px; /* Reducir el tamaño de la fuente general */
+  background-color: #222;
+  color: #fff;
+  padding: 20px 0; /* Espaciado general del footer */
+  font-size: 14px;
+  width: 100%; /* Asegura que el footer ocupe todo el ancho de la pantalla */
+  
 
-    /* Contenedor principal */
-    .container.widget__container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        gap: 15px; /* Reducir el espacio entre las columnas */
-    }
+  /* Primera fila: Widgets (Logo, contacto, enlaces legales) */
+  .footer__widgets {
+    display: flex;
+    justify-content: space-between; /* Distribuye las columnas */
+    align-items: flex-start; /* Alinea verticalmente */
+    flex-wrap: wrap; /* Permite que las columnas se ajusten en pantallas pequeñas */
+    gap: 20px;
+    width: 100%; /* Asegura que los widgets también ocupen todo el ancho */
 
-    /* Widgets */
-    .widget__wrapper {
-        margin-bottom: 10px; /* Reducir margen entre widgets */
-        flex: 1 1 30%; /* Asegura que cada widget tenga una ocupación uniforme */
-    }
+    .footer__column {
+      flex: 1 1 30%; /* Tres columnas con igual proporción inicialmente */
+      text-align: center; /* Texto centrado por defecto */
 
-    a {
+      &--left {
+        text-align: left; /* Alineación izquierda para el logo */
+      }
+
+      &--center {
+        text-align: center; /* Alineación centrada */
+      }
+
+      &--right {
+        text-align: right; /* Alineación derecha */
+      }
+
+      img.footer__logo {
+        max-width: 70%; /* Ajusta el tamaño del logo */
+        height: auto;
+        margin-bottom: 10px; /* Espaciado debajo del logo */
+      }
+
+      p {
+        margin: 5px 0; /* Reduce márgenes entre párrafos */
+        font-size: 12px; /* Texto más compacto */
+      }
+
+      a {
         color: #bbb;
-        font-size: 14px; /* Reducir el tamaño de los enlaces */
-    }
+        text-decoration: none;
 
-    /* Sección de créditos */
+        &:hover {
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  /* Segunda fila: Colophon (Créditos y redes sociales) */
+  .footer__colophon {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #444; /* Línea divisoria */
+    display: flex;
+    justify-content: space-between; /* Créditos a la izquierda, redes sociales a la derecha */
+    align-items: center;
+    flex-wrap: wrap; /* Ajuste en pantallas pequeñas */
+    gap: 15px;
+    width: 100%; /* Asegura que el colofón ocupe todo el ancho */
+
     .footer__credits {
+      flex: 1 1 auto;
+      font-size: 12px;
+      text-align: left;
+
+      p {
+        margin: 0; /* Elimina márgenes innecesarios */
+      }
+
+      a {
         color: #bbb;
-        font-size: 12px;
-        text-align: left; /* Alineamos a la izquierda para que se vea mejor en la misma fila */
-        margin-top: 5px; /* Reducir espacio entre la parte superior y los créditos */
-        margin-bottom: 5px; /* Reducir el espacio inferior */
+        text-decoration: none;
 
-        .czr-copyright {
-            margin-bottom: 5px;
+        &:hover {
+          color: #fff;
         }
-
-        .czr-credits {
-            margin-bottom: 0;
-        }
-
-        .czr-wp-powered {
-            font-size: 10px; /* Reducir aún más el tamaño de la fuente */
-            margin-top: 5px;
-        }
-
-        .czr-designer-text {
-            font-style: italic;
-        }
+      }
     }
 
-    /* Sección de enlaces sociales */
-    .social-links {
-        display: flex; /* Cambiar a flex para alinearlos horizontalmente */
-        gap: 15px; /* Reducir el espacio entre los íconos */
-        align-items: center; /* Asegura que los íconos estén alineados verticalmente */
-        justify-content: flex-start; /* Alineamos a la izquierda */
+    .footer__socials {
+      flex: 1 1 auto;
+      list-style: none;
+      display: flex;
+      justify-content: flex-end; /* Alinea las redes sociales a la derecha */
+      gap: 10px;
 
-        ul.socials {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            gap: 15px; /* Reducir espacio entre los íconos */
-        }
+      li a {
+        font-size: 18px; /* Tamaño de los íconos */
+        color: #fff;
+        text-decoration: none;
 
-        li {
-            a {
-                font-size: 18px; /* Reducir el tamaño de los íconos */
-                color: #fff;
-                text-decoration: none;
-            }
+        &:hover {
+          color: #bbb;
         }
+      }
+    }
+  }
+
+  /* Responsividad para pantallas pequeñas */
+  @media (max-width: 768px) {
+    .footer__widgets {
+      flex-direction: column; /* Apila las columnas */
+      gap: 20px; /* Espaciado entre las secciones */
     }
 
-    /* Estilo para las imágenes */
-    .widget_media_image {
+    .footer__column {
+      flex: 1 1 100%; /* Cada columna ocupa todo el ancho */
+      text-align: center; /* Todo centrado en pantallas pequeñas */
+    }
+
+    .footer__colophon {
+      flex-direction: column; /* Créditos y redes sociales apilados */
+      text-align: center;
+
+      .footer__credits,
+      .footer__socials {
         text-align: center;
+      }
+    }
+  }
 
-        img {
-            max-width: 80%; /* Reducir el tamaño de la imagen */
-            height: auto;
-        }
+  /* Responsividad para pantallas medianas */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .footer__widgets {
+      flex-direction: row; /* Columnas en fila */
+      justify-content: space-around; /* Ajusta la distribución */
+      gap: 15px; /* Espaciado reducido */
     }
 
-    /* Columna final para los créditos y enlaces sociales */
-    .colophon__row {
-        display: flex;
-        justify-content: space-between; /* Asegura que los elementos estén uno al lado del otro */
-        align-items: center; /* Alineación vertical de los elementos */
-        flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
-        gap: 10px;
+    .footer__column {
+      flex: 1 1 30%; /* Ocupan proporciones iguales */
+      text-align: left; /* Alineación izquierda por defecto */
     }
+
+    .footer__colophon {
+      flex-direction: row; /* Créditos y redes sociales en fila */
+      justify-content: space-between; /* Créditos a la izquierda, redes sociales a la derecha */
+    }
+  }
+
+  /* Responsividad para pantallas grandes */
+  @media (min-width: 1025px) {
+    .footer__widgets {
+      flex-direction: row; /* Columnas en fila */
+      justify-content: space-between; /* Separación uniforme */
+      gap: 20px;
+    }
+
+    .footer__column {
+      flex: 1 1 30%; /* Tres columnas proporcionales */
+      text-align: left;
+    }
+
+    .footer__colophon {
+      flex-direction: row; /* Créditos y redes sociales en fila */
+      justify-content: space-between;
+      text-align: left; /* Créditos alineados a la izquierda */
+    }
+  }
 }
