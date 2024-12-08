@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ChartPie from './ChartPie';
 import '../../../../../styles/components/_ChartsContainer.scss';
+//
 
 const groupBy = (key, data = []) => {
   const groups = data.reduce((acc, item) => {

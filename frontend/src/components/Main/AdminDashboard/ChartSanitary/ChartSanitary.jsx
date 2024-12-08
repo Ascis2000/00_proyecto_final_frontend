@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ChartProfesional from './ChartProfesional';
 import { API_URL } from '../../../../config/config.js';
+//
 
 const ChartSanitary = () => {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    // Fetch data from API
     useEffect(() => {
         const fetchUsers = async () => {
             try {
