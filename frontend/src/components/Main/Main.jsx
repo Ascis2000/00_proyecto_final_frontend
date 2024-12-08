@@ -17,7 +17,7 @@ function Main() {
 				<Route path="/" element={<Home />} />		
 				<Route path="/admin" element={<AdminProfile />} />		
 				<Route path="/admin/charts" element={<ChartDashboard />} />
-				{/* <Route path="/admin/charts" element={<ChartDashboard />} /> */}
+				<Route path="/admin/modchatbot" element={<ChartDashboard />} />
 				<Route path="/chatbot" element={<ChatBot />} />
         		{/* <Route path="*" element={<Error404 />} />  */}
 				
