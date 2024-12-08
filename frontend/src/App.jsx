@@ -7,15 +7,14 @@ import Header from './components/Header';
 import Main from './components/Main';
 import Footer from './components/Footer';
 
+
 const App = () => {
 	return (
 		<div className="boxApp">
 			<AuthProvider>
 				<BrowserRouter>
 					<Header />
-					<Main>
-						
-					</Main>
+					<Main/>
 					<Footer />
 				</BrowserRouter>
 			</AuthProvider>
