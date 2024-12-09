@@ -1,8 +1,8 @@
 
 import React, { useState } from 'react';
 import { createChatBotMessage } from 'react-chatbot-kit';
-/* import Users from '../../../componentes/Users';
-import UserForm from '../../../componentes/UserForm'; */
+import ProfesionalForm from '../../../components/Main/ChatBot/ProfesionalForm';
+import UserForm from '../../../components/Main/ChatBot/UserForm'; 
 import StartOptions from '../../../components/Main/StartOptions/StartOptions';
 import ShowHTML from '../../../components/Main/ShowHTML/ShowHTML';
 
@@ -100,16 +100,20 @@ const config = {
 			widgetName: "startOptions",
 			widgetFunc: (props) => <StartOptions {...props} />,
 		},
-		/* {
+		{
 			widgetName: 'showUserForm',
-			widgetFunc: (props) => <UserForm {...props} />,
-		}, */
+			widgetFunc: (props) => <UserForm {...props} />, 
+		},
+		{
+			widgetName: 'showProfesionalForm',
+			widgetFunc: (props) => <ProfesionalForm {...props} />, 
+		},
 		{
 			widgetName: "optionsButtons",
 			widgetFunc: (props) => {
 				return (
 					<>
-						<div className="po">
+						<div className="botones">
 							<button
 								onClick={() => props.actionProvider.handleOptionSelection("usuario", "Usuario")}>Usuario</button>
 							<button onClick={() => props.actionProvider.handleOptionSelection("profesional", "Profesional")}>Profesional</button>
@@ -140,6 +144,7 @@ const config = {
 	customComponents: {
 		// Replaces the default header
 		header: headerWidget,
+		
 	}
 };
 

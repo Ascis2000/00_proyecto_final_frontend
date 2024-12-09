@@ -28,17 +28,6 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 		}));
 	};
 
-	const handleDog = () => {
-		const botMessage = createChatBotMessage("Here's a nice dog picture for you!", {
-			widget: 'dogPicture',
-		});
-
-		setState((prev) => ({
-			...prev,
-			messages: [...prev.messages, botMessage],
-		}));
-	};
-
 	const handleGetUsers = () => {
 		const botMessage = createChatBotMessage("Aquí están los usuarios:", {
 			widget: 'getUsers',
@@ -51,7 +40,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 	};
 
 	const handleUserForm = () => {
-		const botMessage = createChatBotMessage("Formulario:", {
+		const botMessage = createChatBotMessage("Formulario para usuarios:", {
 			widget: 'showUserForm',
 		});
 
@@ -61,20 +50,67 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 		}));
 	};
 
+	const handleUserSubmit = () => {
+		const botMessage = createChatBotMessage("Gracias por enviar el formulario de usuario.", {
+			widget: 'formConfirmationWidget',
+		});
+
+		setState((prev) => ({
+			...prev,
+			messages: [...prev.messages, botMessage],
+		}));
+	};
+
+	const handleProfesionalForm = () => {
+		const botMessage = createChatBotMessage("Formulario para profesionales:", {
+			widget: 'showProfesionalForm', // Cambia el widget para que muestre el formulario de profesionales
+		});
+
+		setState((prev) => ({
+			...prev,
+			messages: [...prev.messages, botMessage],
+		}));
+	};
+
+	const handleProfesionalSubmit = () => {
+		const botMessage = createChatBotMessage("Gracias por enviar el formulario de profesional.", {
+			widget: 'formConfirmationWidget',
+		});
+
+		setState((prev) => ({
+			...prev,
+			messages: [...prev.messages, botMessage],
+		}));
+	};
 
 	let currentQuestionId = 1; // Inicializamos el ID de la primera pregunta
-
 	const handleOptionSelection = async (option, texto) => {
 
 		if (option === "profesional") {
-			currentQuestionId = 6;
+			// Mostrar el formulario de profesional al pulsar el botón correspondiente
+			handleProfesionalForm();
+			return;
 		} else if (option === "usuario") {
-			currentQuestionId = 1;
+			// Mostrar el formulario de usuario al pulsar el botón correspondiente
+			handleUserForm();
+			return;
 		} else if (option) {
 			currentQuestionId = option; // Asignar el valor de `nextQuestion`
 		} else {
 			throw new Error("No se encontró un valor válido para currentQuestionId");
 		}
+	// const handleOptionSelection = async (option, texto) => {
+
+	// 	if (option === "profesional") {
+	// 		currentQuestionId = 6;
+	// 	} else if (option === "usuario") {
+	// 		currentQuestionId = 1;
+	// 	} else if (option) {
+	// 		currentQuestionId = option; // Asignar el valor de `nextQuestion`
+	// 	} else {
+	// 		throw new Error("No se encontró un valor válido para currentQuestionId");
+	// 	}
+
 
 		// Estructura jerárquica de opciones dinamicas
 		// que se rellenan mediante fetch
@@ -191,10 +227,14 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 					actions: {
 						handleStartOptions,
 						handleHello,
-						handleDog,
 						handleGetUsers,
 						handleUserForm,
 						handleOptionSelection,
+						handleProfesionalForm,
+						handleProfesionalSubmit,
+						handleUserSubmit
+
+
 					},
 				});
 			})}
