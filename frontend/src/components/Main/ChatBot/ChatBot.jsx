@@ -4,6 +4,7 @@ import "./ChatBot.css";
 
 import { API_URL } from '../../../config/config.js';
 
+
 const ChatBot = () => {
 	const [isChatOpen, setIsChatOpen] = useState(false);
 	const [messages, setMessages] = useState([

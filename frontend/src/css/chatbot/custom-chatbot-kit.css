@@ -3,17 +3,17 @@
 }
 
 div.react-chatbot-kit-chat-container {
-    width: 500px;
+    width: 430px;
     height: 400px;
 
-    right: 10px;
-    bottom: 30px;
+    right: 70px;
+    bottom: 240px;
     position: fixed;
     z-index:1000;
 }
 
 div.react-chatbot-kit-chat-inner-container {
-    border: 3px solid rgb(147, 48, 137);
+    border: 3px solid #c79dc3;
     overflow: auto;
     padding: 1px;
     display: flex;
@@ -30,16 +30,17 @@ div.react-chatbot-kit-chat-inner-container {
 div.react-chatbot-kit-chat-inner-container .header {
     padding: 5px;
     color: white;
-
-    background-color: #850582;
+    background-color: hsl(300, 55%, 88%);
     border-radius: 3px 3px 1px 1px;
 
-    background: linear-gradient(to bottom, #E3ABE4, #850582);
+    background: linear-gradient(to bottom, #E3ABE4, hsl(283, 66%, 82%));
 }
 
 div.react-chatbot-kit-chat-header {}
 
-div.react-chatbot-kit-chat-input-container {}
+div.react-chatbot-kit-chat-input-container {
+    display: none;
+}
 
 div.react-chatbot-kit-chat-message-container {
     padding: 5px;
@@ -61,7 +62,7 @@ div.react-chatbot-kit-chat-bot-message-container {
     margin: 2px;
 
     border-radius: 5px;
-    background-color: rgb(253, 209, 245);
+    background-color: rgb(249, 230, 245);
 }
 
 div.react-chatbot-kit-chat-bot-avatar-container {
@@ -103,6 +104,7 @@ div.react-chatbot-kit-user-chat-message-arrow {
 div.react-chatbot-kit-chat-bot-message {
     width: 70%;
     right: 50px;
+ 
 }
 
 div.react-chatbot-kit-chat-bot-message-arrow {}
@@ -177,3 +179,32 @@ div.react-chatbot-kit-error-docs {}
     border-radius: 2px;
     border: 2px solid rgb(162, 193, 224);
 }
+
+.botones {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Espaciado entre los botones */
+    margin-top: 20px; /* Separación desde el elemento superior */
+  }
+  
+  .botones button {
+    background-color: #d0addd; /* Color de fondo */
+    color: white; /* Color del texto */
+    font-size: 13px;
+    padding: 11px 16px; /* Espaciado interior */
+    border: none; /* Sin borde */
+    border-radius: 30px; 
+    cursor: pointer;
+    transition: all 0.3s ease; 
+  }
+  
+ 
+  .botones button:hover {
+    background-color: hsl(236, 93%, 78%); 
+    transform: translateY(-2px); 
+  }
+  
+  .botones button:active {
+    transform: translateY(0); 
+  }
+  

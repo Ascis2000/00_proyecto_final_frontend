@@ -25,3 +25,43 @@ h1 {
 .echarts-for-react {
     padding-top: 80px;
 }
+/* Botón flotante */
+.chatbot-toggle-button {
+  position: fixed;
+  bottom: 180px; /* Ajusta la distancia desde el borde inferior */
+  right: 20px; /* Ajusta la distancia desde el borde derecho */
+  background-color: hsl(290, 100%, 78%);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  font-size: 24px;
+  color: white;
+  border: none;
+  z-index: 1050; /* Asegura que el botón esté por encima del resto */
+}
+
+/* Contenedor del chatbot */
+.chatbot-container {
+  position: fixed;
+  bottom: 90px; /* Coloca el chatbot encima del botón */
+  right: 20px; /* Alineado con el botón */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Asegura que el chatbot esté encima de otros elementos */
+}
+
+.chatbot-close-button {
+    position: absolute;
+    top:-200px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #ff4d4d; /* Color rojo */
+  }
+  
