@@ -103,8 +103,8 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 
 		async function obtenerRespuestasPorPregunta(option) {
 			try {
-				console.log("id_pregunta==", option)
-				const response = await fetch(`${API_URL}/api/preguntas/pr/${option}`);
+				console.log("id_pregunta=", option)
+				const response = await fetch(`${API_URL}api/preguntas/pr/${option}`);
 				if (!response.ok) {
 					throw new Error("Error al obtener las respuestas");
 				}
