@@ -14,7 +14,7 @@ const AdminProfile = () => {
         Gráficas de datos
       </button>
       <button
-        onClick={() => navigate('/modchatbot')}
+        onClick={() => navigate('/admin/modchatbot')}
         className="admin-profile__button"
       >
         Modificar ChatBot
