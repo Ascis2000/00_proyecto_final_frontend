@@ -8,6 +8,8 @@ import ChatBot from './ChatBot';
 import ChatbotKit from 'react-chatbot-kit'
 import AdminProfile from './AdminProfile';
 import ModChatbot from './ModChatbot'
+import ProbandoApi from './ProbandoApi'
+
 
 import config from '../../elements/Bot/config/config.jsx';
 import MessageParser from '../../elements/Bot/MessageParser/MessageParser.jsx';
@@ -26,6 +28,7 @@ function Main() {
 				<Route path="/admin" element={<AdminProfile />} />		
 				<Route path="/admin/charts" element={<ChartDashboard />} />
 				<Route path="/admin/modchatbot" element={<ModChatbot />} />
+				<Route path="/admin/probandoapi" element={<ProbandoApi />} />
 				<Route path="/chatbot" element={<ChatBot />} />
 				<Route path="/chatbotkit" element={<ChatbotKit
 					config={config}

@@ -4,7 +4,7 @@ import '../../../styles/components/_ModChatbot.scss'; // Importamos los estilos 
 import { API_URL } from '../../../config/config.js';
 
 
-const ModChatbot = () => {
+const ProbandoApi = () => {
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -13,7 +13,7 @@ const ModChatbot = () => {
     const fetchQuestions = async () => {
       console.log(API_URL)
       try {
-        const response = await axios.get(`${API_URL}api/preguntas/all`);
+        const response = await axios.get(`https://felgtbi-the-bridge.onrender.com/q_and_a?user_rol=usuario`);
         setQuestions(response.data);
         console.log(response.data);
       } catch (error) {
@@ -33,21 +33,21 @@ const ModChatbot = () => {
     setQuestions(updatedQuestions);
   };
 
-  // Handler to save the changes
-  const handleSave = async (index) => {
-    const updatedQuestion = questions[index];  // Obtener la pregunta actualizada
+  // // Handler to save the changes
+  // const handleSave = async (index) => {
+  //   const updatedQuestion = questions[index];  // Obtener la pregunta actualizada
 
-    try {
-      // Realizamos un PUT con los datos de la pregunta modificada
-      const response = await axios.put(`${API_URL}api/preguntas/${updatedQuestion.pregunta_id}`, {
-        pregunta: updatedQuestion.pregunta  // Enviar la pregunta actualizada
-      });
+  //   try {
+  //     // Realizamos un PUT con los datos de la pregunta modificada
+  //     const response = await axios.put(`${API_URL}api/preguntas/${updatedQuestion.pregunta_id}`, {
+  //       pregunta: updatedQuestion.pregunta  // Enviar la pregunta actualizada
+  //     });
 
-      console.log('Pregunta actualizada:', response.data);
-    } catch (error) {
-      console.error('Error al actualizar la pregunta:', error);
-    }
-  };
+  //     console.log('Pregunta actualizada:', response.data);
+  //   } catch (error) {
+  //     console.error('Error al actualizar la pregunta:', error);
+  //   }
+  // };
 
   if (loading) {
     return <p>Cargando datos...</p>;
@@ -78,4 +78,4 @@ const ModChatbot = () => {
   );
 };
 
-export default ModChatbot;
+export default ProbandoApi;
