@@ -29,7 +29,7 @@ const Header = () => {
   return (
     <>
       <header className="navbar">
-      <img className ="logo" src={Logo} alt="Federacion estatal LGTBI+" />
+      <img className ="logo" src={Logo} alt="Federacion estatal LGTBI+"/>
         <div className="nav-items">
           <button className="button"><Link to="/" className="link">Home</Link></button>
           {!isAuthenticated ? (

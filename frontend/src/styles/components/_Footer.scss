@@ -2,7 +2,7 @@
 #footer {
   background-color: #222;
   color: #fff;
-  padding: 20px 0; /* Espaciado general del footer */
+  padding: 5px 0; /* Espaciado general del footer */
   font-size: 14px;
   width: 100%; /* Asegura que el footer ocupe todo el ancho de la pantalla */
   
@@ -35,7 +35,8 @@
       img.footer__logo {
         max-width: 70%; /* Ajusta el tamaño del logo */
         height: auto;
-        margin-bottom: 10px; /* Espaciado debajo del logo */
+        margin-bottom: 1px; /* Espaciado debajo del logo */
+        margin-left: 5px;
       }
 
       p {
