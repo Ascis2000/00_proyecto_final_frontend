@@ -7,7 +7,9 @@ import ChartDashboard from './AdminDashboard';
 import ChatBot from './ChatBot';
 import PrivateRoute from '../PrivateRoute';
 import Cookies from 'js-cookie';
-import ModChatBot from './ModChatbot';
+import ModChatbot from './ModChatbot';
+import ProbandoApi from './ProbandoApi';
+
 
 
 import ChatbotKit from 'react-chatbot-kit'
