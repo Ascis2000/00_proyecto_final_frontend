@@ -1,24 +1,30 @@
 .chart-container {
     text-align: center;
-    margin: 20px;
+    margin: 20px auto; /* Centra el contenedor horizontalmente */
+    max-width: 100%; /* Evita que exceda el ancho del viewport */
+    overflow-x: hidden; /* Oculta cualquier desbordamiento horizontal */
+    box-sizing: border-box; /* Asegura que padding y border se incluyan en el tamaño total */
 }
 
 .chart-heading {
     font-size: 24px;
     margin-bottom: 20px;
     color: #333;
+    max-width: 100%; /* Evita desbordamiento en encabezados largos */
+    word-wrap: break-word; /* Ajusta el texto largo al contenedor */
 }
 
 .button-container {
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin-bottom: 30px;
+    margin: 0 auto 30px; /* Asegura que el margen sea proporcional */
+    max-width: 100%; /* Limita el ancho total del contenedor */
+    flex-wrap: wrap; /* Permite que los botones se ajusten en pantallas pequeñas */
 }
 
 .chart-button {
-    background-color: #44bac1;
-    /* Color de fondo del botón */
+    background-color: #44bac1; /* Color de fondo del botón */
     color: white;
     padding: 10px 20px;
     font-size: 16px;
@@ -26,8 +32,72 @@
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s ease;
+    max-width: 100%; /* Limita el ancho en pantallas pequeñas */
+    word-wrap: break-word; /* Ajusta texto dentro de los botones */
 }
 
 .chart-button:hover {
     background-color: #9c4aa0;
+}
+
+/* Media Queries */
+
+/* Pantallas pequeñas (móviles) */
+@media (max-width: 768px) {
+    .chart-container {
+        margin: 10px auto; /* Reduce el margen */
+    }
+
+    .chart-heading {
+        font-size: 20px; /* Reduce el tamaño de la fuente */
+    }
+
+    .button-container {
+        gap: 10px; /* Reduce el espacio entre botones */
+    }
+
+    .chart-button {
+        font-size: 14px; /* Botones más pequeños */
+        padding: 8px 16px; /* Ajusta el relleno */
+    }
+}
+
+/* Pantallas medianas (tablets) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .chart-container {
+        margin: 15px auto;
+    }
+
+    .chart-heading {
+        font-size: 22px; /* Ajusta el tamaño de la fuente */
+    }
+
+    .button-container {
+        gap: 12px; /* Espaciado intermedio entre botones */
+    }
+
+    .chart-button {
+        font-size: 15px; /* Botones ligeramente más pequeños */
+        padding: 9px 18px; /* Ajusta el relleno */
+    }
+}
+
+/* Pantallas grandes (desktops) */
+@media (min-width: 1025px) {
+    .chart-container {
+        margin: 20px auto;
+    }
+
+    .chart-heading {
+        font-size: 24px; /* Tamaño original */
+    }
+
+    .button-container {
+        gap: 15px; /* Espaciado original */
+    }
+
+    .chart-button {
+        font-size: 16px; /* Tamaño original */
+        padding: 10px 20px; /* Relleno original */
+    }
 }

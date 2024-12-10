@@ -1,0 +1,75 @@
+.chart-container {
+  padding: 20px;
+  text-align: center;
+
+  .chart-heading {
+    text-align: center; /* Centra el título */
+    margin-bottom: 20px; /* Espaciado inferior */
+    font-size: 1.2rem; /* Ajusta el tamaño del texto */
+    color: #1d1d1b; /* Color neutro */
+  }
+  .button-container {
+    display: flex;
+    flex-wrap: wrap;
+    /* Permitir que los botones se ajusten a nuevas filas */
+    justify-content: center;
+    /* Centrar los botones horizontalmente */
+    gap: 10px;
+    /* Espaciado entre botones */
+    margin-bottom: 10px;
+
+    .chart-button {
+      flex: 0 1 calc(50% - 10px); /* Cada botón ocupará el 50% del ancho, menos el espacio del gap */
+        box-sizing: border-box; /* Asegura que padding y bordes no rompan el ancho */
+        padding: 10px;
+        font-size: 14px;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #44BAC1;
+        color: white;
+        border: none;
+        text-align: center;
+
+      &:hover {
+        background-color: #9C4AA0;
+      }
+    }
+  }
+
+  /* Media queries */
+  @media (max-width: 768px) {
+    .button-container {
+        gap: 10px;
+
+        .chart-button {
+            flex: 0 1 calc(50% - 10px);
+            font-size: 12px; /* Botones más pequeños en pantallas móviles */
+            padding: 8px;
+        }
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .button-container {
+      gap: 15px; /* Espaciado ligeramente mayor */
+
+      .chart-button {
+          flex: 0 1 calc(33.33% - 15px); /* 3 columnas en pantallas medianas */
+          font-size: 14px; /* Tamaño del texto ligeramente mayor */
+          padding: 12px; /* Aumentar padding */
+      }
+  }
+}
+
+@media (min-width: 1025px) {
+  .button-container {
+      gap: 20px; /* Más espaciado entre botones */
+
+      .chart-button {
+          flex: 0 1 calc(25% - 20px); /* 4 columnas en pantallas grandes */
+          font-size: 16px; /* Texto más grande */
+          padding: 15px; /* Padding amplio */
+      }
+  }
+}
+}

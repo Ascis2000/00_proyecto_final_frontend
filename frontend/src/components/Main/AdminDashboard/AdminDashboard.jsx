@@ -1,6 +1,8 @@
 import React from 'react';
 import ChartContainer from './ChartContainer';
 import ChartSanitary from './ChartSanitary';
+import '../../../styles/components/_AdminDashboard.scss';
+
 
 function ChartDashboard() {
   return (

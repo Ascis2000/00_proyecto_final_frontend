@@ -1,0 +1,22 @@
+.dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    padding: 20px;
+  
+    /* Media queries */
+    @media (max-width: 768px) { /* Pantallas pequeñas */
+      flex-direction: column; /* Las gráficas se apilan */
+      align-items: center;
+    }
+  
+    @media (min-width: 769px) and (max-width: 1024px) { /* Pantallas medianas */
+      flex-wrap: wrap; /* Las gráficas se ajustan */
+      justify-content: space-evenly;
+    }
+  
+    @media (min-width: 1025px) { /* Pantallas grandes */
+      justify-content: space-between; /* Distribución horizontal */
+    }
+  }
