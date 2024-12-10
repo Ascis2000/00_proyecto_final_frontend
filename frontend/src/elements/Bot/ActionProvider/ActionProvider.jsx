@@ -50,7 +50,8 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 		}));
 	};
 
-	const handleUserSubmit = () => {
+	const handleUserSubmit = (tipoFormulario) => {
+
 		const botMessage = createChatBotMessage("Gracias por enviar el formulario de usuario.", {
 			widget: 'formConfirmationWidget',
 		});
@@ -59,6 +60,14 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 			...prev,
 			messages: [...prev.messages, botMessage],
 		}));
+
+		if (tipoFormulario === "usuario") {
+			handleOptionSelection(1, "", false);
+		} else if (tipoFormulario === "profesional") {
+			handleOptionSelection(6, "", false);
+		}
+
+		console.log("estoy en handleUserSubmit. TipoFormulario", tipoFormulario)
 	};
 
 	const handleProfesionalForm = () => {
@@ -84,7 +93,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 	};
 
 	let currentQuestionId = 1; // Inicializamos el ID de la primera pregunta
-	const handleOptionSelection = async (option, texto) => {
+	const handleOptionSelection = async (option, texto, fin) => {
 
 		if (option === "profesional") {
 			// Mostrar el formulario de profesional al pulsar el botón correspondiente
@@ -99,18 +108,6 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 		} else {
 			throw new Error("No se encontró un valor válido para currentQuestionId");
 		}
-	// const handleOptionSelection = async (option, texto) => {
-
-	// 	if (option === "profesional") {
-	// 		currentQuestionId = 6;
-	// 	} else if (option === "usuario") {
-	// 		currentQuestionId = 1;
-	// 	} else if (option) {
-	// 		currentQuestionId = option; // Asignar el valor de `nextQuestion`
-	// 	} else {
-	// 		throw new Error("No se encontró un valor válido para currentQuestionId");
-	// 	}
-
 
 		// Estructura jerárquica de opciones dinamicas
 		// que se rellenan mediante fetch
@@ -118,28 +115,57 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 			datos: {
 				pregunta: "",
 				respuestas: [],
+				fin: "",
 			}
 		};
 
-		// Mostrar mensaje del usuario reflejando la selección
-		const userMessage = createClientMessage(`He seleccionado:`, {
-			widget: 'showHTML',
-			payload: { customHTML: texto }, // Aquí se pasa el payload al widget
-			delay: 500,
-		});
-		console.log("userMessage", userMessage); // Agrega el mensaje al flujo de chat
+		// mensaje final si ya no hay mas preguntas
+		if(fin == true){
 
-		setState((prevState) => ({
-			...prevState,
-			messages: [...prevState.messages, userMessage],
-		}));
+			// Mostrar mensaje del usuario reflejando la selección
+			const userMessage = createClientMessage(`He seleccionado:`, {
+				widget: 'showHTML',
+				payload: { customHTML: texto }, // Aquí se pasa el payload al widget
+				delay: 500,
+			});
 
+			setState((prevState) => ({
+				...prevState,
+				messages: [...prevState.messages, userMessage],
+			}));
 
-		
+			const finalMessage = createChatBotMessage("Fin de la información.");
+			setState((prevState) => ({
+				...prevState,
+				messages: [...prevState.messages, finalMessage],
+			}));
+
+			const ayudaMessage = createChatBotMessage("¿Quieres hacer alguna consulta más?");
+			setState((prevState) => ({
+				...prevState,
+				messages: [...prevState.messages, ayudaMessage],
+			}));
+
+			return;
+		}
+		if(texto !== ""){
+			// Mostrar mensaje del usuario reflejando la selección
+			const userMessage = createClientMessage(`He seleccionado:`, {
+				widget: 'showHTML',
+				payload: { customHTML: texto }, // Aquí se pasa el payload al widget
+				delay: 500,
+			});
+			console.log("userMessage", userMessage); // Agrega el mensaje al flujo de chat
+
+			setState((prevState) => ({
+				...prevState,
+				messages: [...prevState.messages, userMessage],
+			}));
+		}
 
 		async function obtenerRespuestasPorPregunta(option) {
 			try {
-				console.log("id_pregunta=", option)
+				console.log("id_preguntaaaa=", option)
 				const response = await fetch(`${API_URL}api/preguntas/pr/${option}`);
 				if (!response.ok) {
 					throw new Error("Error al obtener las respuestas");
@@ -147,11 +173,12 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 				const respuestas = await response.json();
 
 				currentQuestionId++
-
+				console.log("RESPUESSSTAS", respuestas)
 				return respuestas.map((res) => ({
 					pregunta: res.pregunta,
 					id: res.respuesta_id,
 					texto: res.respuesta,
+					fin: res.fin,
 					nextQuestion: currentQuestionId++
 				}));
 			} catch (error) {
@@ -160,65 +187,38 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 			}
 		}
 
-		async function actualizarRespuestasPorPregunta(option) {
-			const nuevosDatos = await obtenerRespuestasPorPregunta(option);
-			if (nuevosDatos.length > 0) {
-				optionsMap.datos.pregunta = nuevosDatos[0].pregunta;
-				optionsMap.datos.respuestas = nuevosDatos;
-			}
-			return optionsMap.datos; // Devuelve los datos actualizados
-		}
+		// Actualizamos las respuestas dinámicas según la pregunta actual
+		const nuevosDatos = await obtenerRespuestasPorPregunta(option);
 
-		// Incrementar el ID de la pregunta para la próxima llamada
-		const nextOptions = await actualizarRespuestasPorPregunta(currentQuestionId);
+		console.log("nuevosDatos", nuevosDatos)
+		if (nuevosDatos.length > 0) {
+			optionsMap.datos.pregunta = nuevosDatos[0].pregunta;
+			optionsMap.datos.respuestas = nuevosDatos;
 
-		if (nextOptions) {
-			const { pregunta, respuestas } = nextOptions;
+			const botMessage = createChatBotMessage(optionsMap.datos.pregunta, {
+				widget: "dynamicOptions",
+				payload: { options: optionsMap.datos.respuestas },
+				delay: 500,
+			});
 
-			if (respuestas.length !== 0) {
-				console.log(respuestas)
-				const botMessage = createChatBotMessage(pregunta, {
-					widget: "dynamicOptions",
-					payload: { options: respuestas },
-					delay: 500,
-				});
-
-				setState((prevState) => ({
-					...prevState,
-					messages: [...prevState.messages, botMessage],
-				}));
-			}
-			else if (respuestas.length === 0) {
-				const finalMessage = createChatBotMessage("Fin de la información.");
-				setState((prevState) => ({
-					...prevState,
-					messages: [...prevState.messages, finalMessage],
-				}));
-
-				const ayudaMessage = createChatBotMessage("¿Necesitas más información?");
-				setState((prevState) => ({
-					...prevState,
-					messages: [...prevState.messages, ayudaMessage],
-				}));
-			}
-		} else {
-			// Si no hay más opciones, mostrar un mensaje por defecto
-			const noMoreOptionsMessage = createChatBotMessage("No hay más opciones disponibles.");
 			setState((prevState) => ({
 				...prevState,
-				messages: [...prevState.messages, noMoreOptionsMessage],
+				messages: [...prevState.messages, botMessage],
+			}));
+		} else {
+			const finalMessage = createChatBotMessage("Fin de la información.");
+			setState((prevState) => ({
+				...prevState,
+				messages: [...prevState.messages, finalMessage],
+			}));
+
+			const ayudaMessage = createChatBotMessage("¿Quieres hacer alguna consulta más?");
+			setState((prevState) => ({
+				...prevState,
+				messages: [...prevState.messages, ayudaMessage],
 			}));
 		}
 	};
-
-
-
-
-
-
-
-
-
 
 	return (
 		<div>

@@ -8,7 +8,7 @@ const ProfesionalForm = ({ actionProvider }) => {
 		cod_postal: '',
 		ambito: '',
 		especialidad: '',
-
+		tipoFormulario: 'profesional',
 	});
 	//mostrar el mensaje de error
 	const [error, setError] = useState('');
@@ -34,6 +34,8 @@ const ProfesionalForm = ({ actionProvider }) => {
 		}
 		setError('');
 
+		console.log("FORMDATA====", formData)
+
 		fetch(`${API_URL}api/profesionales/create`, {
 			method: 'POST',
 			headers: {
@@ -44,7 +46,8 @@ const ProfesionalForm = ({ actionProvider }) => {
 			.then((response) => response.json())
 			.then((data) => {
 				console.log('Profesional creado:', data);
-				actionProvider.handleProfesionalSubmit();
+				console.log("Profesional=", formData.tipoFormulario)
+				actionProvider.handleUserSubmit(formData.tipoFormulario);
 			})
 			.catch((error) => console.error('Error:', error));
 	};
@@ -157,6 +160,7 @@ const ProfesionalForm = ({ actionProvider }) => {
 					value={formData.especialidad}
 					onChange={handleChange}
 				/>
+
 				<button onClick={handleSubmit}>Enviar</button>
 			</div>
 		</div>

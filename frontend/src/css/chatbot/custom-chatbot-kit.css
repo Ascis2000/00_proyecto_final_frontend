@@ -189,6 +189,10 @@ div.react-chatbot-kit-error-docs {}
     cursor: pointer;
     transition: all 0.3s ease; 
   }
+
+  i.fas.fa-times{
+    font-size:25px;
+  }
   
  
   .botones button:hover {

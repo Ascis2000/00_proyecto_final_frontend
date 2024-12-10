@@ -40,7 +40,7 @@ function Main() {
             onClick={() => setShowChatbot(false)}
             className="chatbot-close-button"
           >
-            ❌ {/* Icono para cerrar el chatbot */}
+          <i className="fas fa-times" ></i>
           </button>
           <ChatbotKit
             config={config}
