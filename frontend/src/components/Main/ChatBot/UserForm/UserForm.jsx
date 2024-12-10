@@ -53,10 +53,10 @@ const UserForm = ({ actionProvider }) => {
 	return (
 		<div >
 			<h3>Por favor, ingresa tus datos:</h3>
-
 			{/* Mensaje de error */}
 			{error && <p style={{ color: 'red' }}>{error}</p>}
 			<div className="form-container">
+				
 			{/* Selector para el País */}
 			<label htmlFor="pais">País:</label>
 			<select
