@@ -70,7 +70,7 @@ const ModChatbot = () => {
 
   return (
     <div className="mod-chatbot">
-      <h1>Gráficas de invitados</h1>
+      <h1>Edita preguntas y respuestas</h1>
       {questions.map((question, questionIndex) => (
         <div key={question.pregunta_id} className="question-box">
           <textarea

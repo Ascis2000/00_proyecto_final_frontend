@@ -5,6 +5,7 @@ import Home from './Home';
 import '../../styles/components/_Main.scss';
 import ChartDashboard from './AdminDashboard';
 import ChatBot from './ChatBot';
+import ModChatBot from './ModChatbot';
 
 
 import ChatbotKit from 'react-chatbot-kit'
@@ -53,7 +54,7 @@ function Main() {
 				<Route path="/" element={<Home />} />
 				<Route path="/admin" element={<AdminProfile />} />
 				<Route path="/admin/charts" element={<ChartDashboard />} />
-				<Route path="/admin/modchatbot" element={<ChartDashboard />} />
+				<Route path="/admin/modchatbot" element={<ModChatBot />} />
 				<Route path="/chatbot" element={<ChatBot />} />
 				{/* <Route path="/chatbotkit" element={<ChatbotKit
 					config={config}
