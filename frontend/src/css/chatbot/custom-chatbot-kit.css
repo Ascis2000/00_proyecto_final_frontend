@@ -3,9 +3,8 @@
 }
 
 div.react-chatbot-kit-chat-container {
-    width: 430px;
+    width: 440px;
     height: 400px;
-
     right: 70px;
     bottom: 240px;
     position: fixed;
@@ -13,7 +12,7 @@ div.react-chatbot-kit-chat-container {
 }
 
 div.react-chatbot-kit-chat-inner-container {
-    border: 3px solid #c79dc3;
+    border: 3px solid #dbc5d1;
     overflow: auto;
     padding: 1px;
     display: flex;
@@ -21,26 +20,27 @@ div.react-chatbot-kit-chat-inner-container {
 
     flex-direction: column;
     height: 100%;
-    /* Asegura que use toda la altura del contenedor */
     overflow-y: auto;
-    /* Habilita el scroll para el contenido */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 div.react-chatbot-kit-chat-inner-container .header {
     padding: 5px;
     color: white;
-    background-color: hsl(300, 55%, 88%);
+    background-color: #f393c8c2;
     border-radius: 3px 3px 1px 1px;
 
-    background: linear-gradient(to bottom, #E3ABE4, hsl(283, 66%, 82%));
+  
 }
 
 div.react-chatbot-kit-chat-header {}
 
 div.react-chatbot-kit-chat-input-container {
-    display: none;
+    
 }
+
+
+
 
 div.react-chatbot-kit-chat-message-container {
     padding: 5px;
@@ -62,7 +62,7 @@ div.react-chatbot-kit-chat-bot-message-container {
     margin: 2px;
 
     border-radius: 5px;
-    background-color: rgb(249, 230, 245);
+    background-color: #f5eef2;
 }
 
 div.react-chatbot-kit-chat-bot-avatar-container {
@@ -144,24 +144,16 @@ div.react-chatbot-kit-error-docs {}
 .react-chatbot-kit-chat-message-container .boxPreguntas button {
     width: 200px;
     padding: 10px;
-    /* Espaciado interno del botón */
     background-color: #cda7cc;
-    /* Color de fondo */
-
     color: white;
-    /* Color del texto */
     border: none;
-    /* Sin borde */
     border-radius: 5px;
-    /* Bordes redondeados */
     cursor: pointer;
-    /* Cursor al pasar sobre el botón */
     word-wrap: break-word;
 }
 
 .react-chatbot-kit-chat-message-container .boxPreguntas button:hover {
     background-color: #b37fb1;
-    /* Cambio de color al pasar el cursor */
 }
 
 .react-chatbot-kit-user-chat-message-container {
@@ -183,16 +175,16 @@ div.react-chatbot-kit-error-docs {}
 .botones {
     display: flex;
     justify-content: center;
-    gap: 15px; /* Espaciado entre los botones */
-    margin-top: 20px; /* Separación desde el elemento superior */
+    gap: 15px; 
+    margin-top: 20px; 
   }
   
   .botones button {
-    background-color: #d0addd; /* Color de fondo */
-    color: white; /* Color del texto */
+    background-color: #f393c8c2; 
+    color: white; 
     font-size: 13px;
-    padding: 11px 16px; /* Espaciado interior */
-    border: none; /* Sin borde */
+    padding: 11px 16px; 
+    border: none; 
     border-radius: 30px; 
     cursor: pointer;
     transition: all 0.3s ease; 
@@ -207,4 +199,29 @@ div.react-chatbot-kit-error-docs {}
   .botones button:active {
     transform: translateY(0); 
   }
-  
+
+  @media (max-width: 768px) {
+    div.react-chatbot-kit-chat-container {
+        width: 335px; 
+        height: 300px; 
+        right: 40px; 
+        bottom: 320px; 
+    }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+    div.react-chatbot-kit-chat-container {
+        width: 380px; 
+        height: 380px; 
+        right: 40px; 
+        bottom: 180px; 
+    }
+}
+
+@media (min-width: 1025px) {
+    div.react-chatbot-kit-chat-container {
+        width: 430px;
+        height: 400px;
+        right: 70px;
+        bottom: 240px;
+    }
+}
