@@ -28,7 +28,7 @@ const Home = () => {
 				console.log("data", data)
 			
 			} catch (err) {
-				console.error("Error al obtener las películas:", err);
+				console.error("HOME: Error al obtener API:", err);
 			}
 		};
 
@@ -38,7 +38,7 @@ const Home = () => {
 	return (
 		<div className="home">
 			{
-				isAuthenticated ? (
+				/* isAuthenticated ? (
 					<>
 						<h2>Usuario: {user?.nombre}</h2>
 						<p>Tu tipo de rol actual es:
@@ -54,7 +54,7 @@ const Home = () => {
 							<h2>Bienvenid@ al Proyecto Final</h2>
 						</div>
 					</>
-				)
+				) */
 			}
 		</div>
 	);
