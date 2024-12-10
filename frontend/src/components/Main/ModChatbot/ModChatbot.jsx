@@ -79,6 +79,14 @@ const ModChatbot = () => {
             rows={4}
             className="question-textarea"
           />
+          <div className="button-container">
+            <button
+              onClick={() => handleSaveQuestion(questionIndex)}
+              className="save-button"
+            >
+              Modificar Pregunta
+            </button>
+          </div>
           <div className="answers-container">
             <h3>Respuestas:</h3>
             {question.respuestas && question.respuestas.map((respuesta, answerIndex) => (
@@ -100,14 +108,7 @@ const ModChatbot = () => {
               </div>
             ))}
           </div>
-          <div className="button-container">
-            <button
-              onClick={() => handleSaveQuestion(questionIndex)}
-              className="save-button"
-            >
-              Modificar Pregunta
-            </button>
-          </div>
+          
         </div>
       ))}
     </div>
