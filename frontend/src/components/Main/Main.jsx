@@ -5,9 +5,10 @@ import Home from './Home';
 import '../../styles/components/_Main.scss';
 import ChartDashboard from './AdminDashboard';
 import ChatBot from './ChatBot';
-import PrivateRoute from '../PrivateRoute';
+//import PrivateRoute from '../PrivateRoute';
 import Cookies from 'js-cookie';
-import ModChatBot from './ModChatbot';
+import ModChatbot from './ModChatbot';
+import ProbandoApi from './ProbandoApi'
 
 
 import ChatbotKit from 'react-chatbot-kit'
@@ -30,7 +31,7 @@ function Main() {
 	return (
 		<main > {/* className="boxMain" */}
 			     {/* Botón flotante que aparece cuando el chatbot está oculto */}
-				 {!showChatbot && (
+				{!showChatbot && (
         <button
           onClick={() => setShowChatbot(!showChatbot)}
           className="chatbot-toggle-button"
@@ -58,12 +59,12 @@ function Main() {
 			<Routes>
 				{/* <Route path="/" element={<Home />} /> */}
         {/* Rutas protegidas */}
-          <Route element={<PrivateRoute token={token} />}>
+          {/* <Route element={<PrivateRoute token={token} />}> */}
             <Route path="/admin" element={<AdminProfile />} />
             <Route path="/admin/charts" element={<ChartDashboard />} />
             <Route path="/admin/modchatbot" element={<ModChatbot />} />
             <Route path="/admin/probandoapi" element={<ProbandoApi />} />
-          </Route>
+          {/* </Route> */}
 				<Route path="/chatbot" element={<ChatBot />} />
 				{/* <Route path="/chatbotkit" element={<ChatbotKit
 					config={config}
