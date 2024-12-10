@@ -25,7 +25,7 @@ const UserForm = ({ actionProvider }) => {
 		const { name, value } = event.target;
 		if (name === "edad") {
 		  const validValue = value.replace(/[^0-9]/g, ''); 
-		  if (parseInt(validValue) > 0 || validValue === "") {
+		  if (validValue.length <= 2 && (parseInt(validValue) > 0 || validValue === "")) {
 			setFormData({
 			  ...formData,
 			  [name]: validValue,
