@@ -8,7 +8,8 @@ import ChatBot from './ChatBot';
 //import PrivateRoute from '../PrivateRoute';
 import Cookies from 'js-cookie';
 import ModChatbot from './ModChatbot';
-import ProbandoApi from './ProbandoApi'
+
+import ProbandoApi from './ProbandoApi';
 
 
 import ChatbotKit from 'react-chatbot-kit'

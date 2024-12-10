@@ -13,13 +13,30 @@ const ProfesionalForm = ({ actionProvider }) => {
 	//mostrar el mensaje de error
 	const [error, setError] = useState('');
 
-	const handleChange = (e) => {
-		const { name, value } = e.target;
-		setFormData({
-			...formData,
-			[name]: value,
-		});
-	};
+	// const handleChange = (e) => {
+	// 	const { name, value } = e.target;
+	// 	setFormData({
+	// 		...formData,
+	// 		[name]: value,
+	// 	});
+	// };
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    if (name === "cod_postal") {
+      let validValue = value.replace(/[^0-9]/g, ''); 
+      if (validValue.length <= 5) {
+        setFormData({
+          ...formData,
+          [name]: validValue,
+        });
+      } 
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
+  };
 
 	const handleSubmit = () => {
 		//validacion 

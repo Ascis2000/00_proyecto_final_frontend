@@ -11,7 +11,7 @@ const ChartPie = ({ title, data }) => {
       trigger: 'item',
     },
     legend: {
-      top: '5%',
+      top: '3%',
       left: 'center',
     },
     color: colors, 
@@ -19,8 +19,8 @@ const ChartPie = ({ title, data }) => {
       {
         name: title,
         type: 'pie',
-        radius: ['40%', '70%'],
-        center: ['50%', '70%'],
+        radius: ['35%', '70%'],
+        center: ['50%', '60%'],
         data: data.map((item) => ({ value: item.count, name: item.label })),
       },
     ],
