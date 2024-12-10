@@ -3,25 +3,40 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+    max-width: 100%; /* Asegura que todos los elementos no excedan el ancho */
+    }
 
 body {
-    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Evita el desplazamiento horizontal */
+    max-width: 100%; /* Restringe el ancho al 100% de la pantalla */
+    box-sizing: border-box; /* Incluye padding y border en el tamaño de los elementos */
 }
 
 .boxApp {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    max-width: 100%; /* Limita el ancho */
+    overflow-x: hidden; /* Oculta desbordamiento horizontal */
+    
 }
 
 main {
-    flex: 1; 
+    flex: 1;
+    margin-top: 70px; /* Ajusta según la altura del header */
+    width: 100%;
+    max-width: 100vw; /* Evita que exceda el ancho del viewport */
+    overflow-x: hidden; /* Oculta cualquier desbordamiento horizontal */
 }
 
+/* Títulos */
 h1 {
     text-align: center;
 }
+
+/* Ajustes de gráficos */
 .echarts-for-react {
     padding-top: 80px;
 }
@@ -82,3 +97,38 @@ h1 {
       font-size: 15px; 
     }
   }
+
+
+  
+
+/* Media queries */
+@media (max-width: 768px) { /* Pantallas pequeñas (móviles) */
+    main {
+        margin-top: 50px; /* Ajusta si el header tiene menor altura en móviles */
+    }
+
+    .echarts-for-react {
+        padding-top: 50px; /* Ajusta para móviles si es necesario */
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) { /* Pantallas medianas (tablets) */
+    main {
+        margin-top: 65px; /* Ajusta según la altura del header en tablets */
+    }
+
+    .echarts-for-react {
+        padding-top: 70px; /* Ajuste adicional si es necesario */
+    }
+}
+
+@media (min-width: 1025px) { /* Pantallas grandes (desktops) */
+    main {
+        margin-top: 70px; /* Ajusta según la altura del header en desktops */
+    }
+
+    .echarts-for-react {
+        padding-top: 80px; /* Estilo estándar para pantallas grandes */
+    }
+}
+

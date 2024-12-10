@@ -1,11 +1,11 @@
-
 #footer {
   background-color: #222;
   color: #fff;
   padding: 5px 0; /* Espaciado general del footer */
   font-size: 14px;
   width: 100%; /* Asegura que el footer ocupe todo el ancho de la pantalla */
-  
+  max-width: 100vw; /* Prevenir desbordamiento horizontal */
+  overflow-x: hidden; /* Ocultar cualquier desbordamiento horizontal */
 
   /* Primera fila: Widgets (Logo, contacto, enlaces legales) */
   .footer__widgets {
@@ -59,7 +59,7 @@
   .footer__colophon {
     margin-top: 15px;
     padding-top: 10px;
-    border-top: 1px solid #444; /* Línea divisoria */
+    border-top: 1px solid #797777; /* Línea divisoria */
     display: flex;
     justify-content: space-between; /* Créditos a la izquierda, redes sociales a la derecha */
     align-items: center;
