@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './UserForm.css'; 
+import './UserForm.css';
 import { API_URL } from '../../../../config/config.js';
 
 const UserForm = ({ actionProvider }) => {
@@ -12,18 +12,35 @@ const UserForm = ({ actionProvider }) => {
 		tipoFormulario: 'usuario',
 	});
 	//mostrar el mensaje de error
-	const [error, setError] = useState(''); 
+	const [error, setError] = useState('');
 
-	const handleChange = (e) => {
-		const { name, value } = e.target;
-		setFormData({
-			...formData, 
-			[name]: value, 
-		});
-	};
+	// const handleChange = (e) => {
+	// 	const { name, value } = e.target;
+	// 	setFormData({
+	// 		...formData,
+	// 		[name]: value,
+	// 	});
+	// };
+	const handleChange = (event) => {
+		const { name, value } = event.target;
+		if (name === "edad") {
+		  const validValue = value.replace(/[^0-9]/g, ''); 
+		  if (validValue.length <= 2 && (parseInt(validValue) > 0 || validValue === "")) {
+			setFormData({
+			  ...formData,
+			  [name]: validValue,
+			});
+		  }
+		} else {
+		  setFormData({
+			...formData,
+			[name]: value,
+		  });
+		}
+	  };
 
 	const handleSubmit = () => {
-	//validacion 
+		//validacion 
 		if (
 			!formData.pais ||
 			!formData.genero ||
@@ -32,7 +49,7 @@ const UserForm = ({ actionProvider }) => {
 			!formData.edad
 		) {
 			setError('Por favor, completa todos los campos antes de enviar.');
-			return; 
+			return;
 		}
 		setError('');
 
@@ -42,14 +59,14 @@ const UserForm = ({ actionProvider }) => {
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify(formData), 
+			body: JSON.stringify(formData),
 		})
 			.then((response) => response.json())
 			.then((data) => {
 				console.log('Usuario creado:', data);
 				console.log("Usuario=", formData.tipoFormulario)
-				actionProvider.handleUserSubmit(formData.tipoFormulario); 
-				
+				actionProvider.handleUserSubmit(formData.tipoFormulario);
+
 			})
 			.catch((error) => console.error('Error:', error));
 	};
@@ -60,57 +77,57 @@ const UserForm = ({ actionProvider }) => {
 			{/* Mensaje de error */}
 			{error && <p style={{ color: 'red' }}>{error}</p>}
 			<div className="form-container">
-				
-			{/* Selector para el País */}
-			<label htmlFor="pais">País:</label>
-			<select
-				name="pais"
-				value={formData.pais}
-				onChange={handleChange}
-			>
-				<option value="" disabled>Selecciona tu país</option>
-				<option value="España">España</option>
-			</select>
 
-			<label htmlFor="genero">Género:</label>
-			<select
-				name="genero"
-				value={formData.genero}
-				onChange={handleChange}
-			>
-				<option value="" disabled>Selecciona tu género</option>
-				<option value="Masculino">Masculino</option>
-				<option value="Femenino">Femenino</option>
-				<option value="No Binario">No Binario</option>
-			</select>
+				{/* Selector para el País */}
+				<label htmlFor="pais">País:</label>
+				<select
+					name="pais"
+					value={formData.pais}
+					onChange={handleChange}
+				>
+					<option value="" disabled>Selecciona tu país</option>
+					<option value="España">España</option>
+				</select>
 
-			<label htmlFor="orien_sex">Orientación:</label>
-			<select
-				name="orien_sex"
-				value={formData.orien_sex}
-				onChange={handleChange}
-			>
-				<option value="" disabled>Selecciona tu orientación</option>
-				<option value="Heterosexualidad">Heterosexualidad</option>
-				<option value="Homosexualidad">Homosexualidad</option>
-				<option value="Bisexualidad">Bisexualidad</option>
-				<option value="Pansexualidad">Pansexualidad</option>
-				<option value="Asexualidad">Asexualidad</option>
-				<option value="Demisexualidad">Demisexualidad</option>
-				<option value="Androsexualidad">Androsexualidad</option>
-				<option value="Ginesexualidad">Ginesexualidad</option>
-				<option value="Gris-asexualidad">Gris-asexualidad</option>
-				<option value="Otro">Otro</option>
-			</select>
+				<label htmlFor="genero">Género:</label>
+				<select
+					name="genero"
+					value={formData.genero}
+					onChange={handleChange}
+				>
+					<option value="" disabled>Selecciona tu género</option>
+					<option value="Masculino">Masculino</option>
+					<option value="Femenino">Femenino</option>
+					<option value="No Binario">No Binario</option>
+				</select>
 
-      <label htmlFor="provincia">Provincia:</label>
-			<select
-				name="provincia"
-				value={formData.provincia}
-				onChange={handleChange}
-			>
-				<option value="" disabled>Selecciona tu provincia</option>
-				<option value="Álava">Álava</option>
+				<label htmlFor="orien_sex">Orientación:</label>
+				<select
+					name="orien_sex"
+					value={formData.orien_sex}
+					onChange={handleChange}
+				>
+					<option value="" disabled>Selecciona tu orientación</option>
+					<option value="Heterosexualidad">Heterosexualidad</option>
+					<option value="Homosexualidad">Homosexualidad</option>
+					<option value="Bisexualidad">Bisexualidad</option>
+					<option value="Pansexualidad">Pansexualidad</option>
+					<option value="Asexualidad">Asexualidad</option>
+					<option value="Demisexualidad">Demisexualidad</option>
+					<option value="Androsexualidad">Androsexualidad</option>
+					<option value="Ginesexualidad">Ginesexualidad</option>
+					<option value="Gris-asexualidad">Gris-asexualidad</option>
+					<option value="Otro">Otro</option>
+				</select>
+
+				<label htmlFor="provincia">Provincia:</label>
+				<select
+					name="provincia"
+					value={formData.provincia}
+					onChange={handleChange}
+				>
+					<option value="" disabled>Selecciona tu provincia</option>
+					<option value="Álava">Álava</option>
 					<option value="Albacete">Albacete</option>
 					<option value="Alicante">Alicante</option>
 					<option value="Almería">Almería</option>
@@ -161,19 +178,21 @@ const UserForm = ({ actionProvider }) => {
 					<option value="Vizcaya">Vizcaya</option>
 					<option value="Zamora">Zamora</option>
 					<option value="Zaragoza">Zaragoza</option>
-			</select>
+				</select>
 
-			<label htmlFor="edad">Edad:</label>
-			<input
-				type="number"
-				name="edad"
-				placeholder="Edad"
-				value={formData.edad}
-				onChange={handleChange}
-			/>
+				<label htmlFor="edad">Edad:</label>
+				<input
+					type="number"
+					name="edad"
+					placeholder="Edad"
+					value={formData.edad}
+					onChange={handleChange}
+					min="1"
+					inputMode="numeric"
+				/>
 
-			<button onClick={handleSubmit}>Enviar</button>
-		</div>
+				<button onClick={handleSubmit}>Enviar</button>
+			</div>
 		</div>
 	);
 };
