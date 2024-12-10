@@ -1,22 +1,35 @@
 .dashboard {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: space-between;
-    padding: 20px;
-  
-    /* Media queries */
-    @media (max-width: 768px) { /* Pantallas pequeñas */
-      flex-direction: column; /* Las gráficas se apilan */
-      align-items: center;
-    }
-  
-    @media (min-width: 769px) and (max-width: 1024px) { /* Pantallas medianas */
-      flex-wrap: wrap; /* Las gráficas se ajustan */
-      justify-content: space-evenly;
-    }
-  
-    @media (min-width: 1025px) { /* Pantallas grandes */
-      justify-content: space-between; /* Distribución horizontal */
-    }
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+  padding: 20px;
+
+  /* Media Queries */
+  @media (max-width: 480px) { /* Móviles */
+      flex-direction: column; /* Las gráficas se apilan verticalmente */
+      align-items: center; /* Centra los elementos */
+      gap: 10px; /* Reduce el espacio entre elementos */
+      padding: 10px; /* Menos espacio alrededor */
   }
+
+  @media (min-width: 481px) and (max-width: 768px) { /* Tablets  */
+      flex-direction: column; /* Las gráficas siguen apiladas */
+      align-items: center; /* Centra los elementos */
+      gap: 15px; /* Espacio moderado entre elementos */
+      padding: 15px; /* Ajusta el padding */
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) { /* Portátiles */
+      flex-wrap: wrap; /* Las gráficas se ajustan en filas */
+      justify-content: space-evenly; /* Distribución más uniforme */
+      gap: 20px; /* Espacio estándar entre elementos */
+      padding: 20px; /* Padding estándar */
+  }
+
+  @media (min-width: 1025px) { /* Sobremesas */
+      justify-content: space-between; /* Distribución horizontal con espacio */
+      gap: 20px; /* Espacio estándar entre elementos */
+      padding: 20px; /* Padding estándar */
+  }
+}
