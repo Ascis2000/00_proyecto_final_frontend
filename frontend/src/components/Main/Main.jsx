@@ -7,14 +7,11 @@ import ChartDashboard from './AdminDashboard';
 import ChatBot from './ChatBot';
 import PrivateRoute from '../PrivateRoute';
 import Cookies from 'js-cookie';
-
+import ModChatBot from './ModChatbot';
 
 
 import ChatbotKit from 'react-chatbot-kit'
 import AdminProfile from './AdminProfile';
-import ModChatbot from './ModChatbot'
-import ProbandoApi from './ProbandoApi'
-
 
 import config from '../../elements/Bot/config/config.jsx';
 import MessageParser from '../../elements/Bot/MessageParser/MessageParser.jsx';
@@ -49,7 +46,7 @@ function Main() {
             onClick={() => setShowChatbot(false)}
             className="chatbot-close-button"
           >
-            ❌ {/* Icono para cerrar el chatbot */}
+          <i className="fas fa-times" ></i>
           </button>
           <ChatbotKit
             config={config}

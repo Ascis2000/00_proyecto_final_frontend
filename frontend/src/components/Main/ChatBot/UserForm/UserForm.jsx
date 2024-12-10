@@ -9,6 +9,7 @@ const UserForm = ({ actionProvider }) => {
 		orien_sex: '',
 		provincia: '',
 		edad: '',
+		tipoFormulario: 'usuario',
 	});
 	//mostrar el mensaje de error
 	const [error, setError] = useState(''); 
@@ -35,6 +36,7 @@ const UserForm = ({ actionProvider }) => {
 		}
 		setError('');
 
+		console.log("FORMDATA====", formData)
 		fetch(`${API_URL}api/users/create`, {
 			method: 'POST',
 			headers: {
@@ -45,7 +47,9 @@ const UserForm = ({ actionProvider }) => {
 			.then((response) => response.json())
 			.then((data) => {
 				console.log('Usuario creado:', data);
-				actionProvider.handleUserSubmit(); 
+				console.log("Usuario=", formData.tipoFormulario)
+				actionProvider.handleUserSubmit(formData.tipoFormulario); 
+				
 			})
 			.catch((error) => console.error('Error:', error));
 	};
@@ -53,10 +57,10 @@ const UserForm = ({ actionProvider }) => {
 	return (
 		<div >
 			<h3>Por favor, ingresa tus datos:</h3>
-
 			{/* Mensaje de error */}
 			{error && <p style={{ color: 'red' }}>{error}</p>}
 			<div className="form-container">
+				
 			{/* Selector para el País */}
 			<label htmlFor="pais">País:</label>
 			<select
@@ -167,6 +171,7 @@ const UserForm = ({ actionProvider }) => {
 				value={formData.edad}
 				onChange={handleChange}
 			/>
+
 			<button onClick={handleSubmit}>Enviar</button>
 		</div>
 		</div>

@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 10px;
-    background-color: hsl(268, 38%, 87%);
+    background-color: #e9d8e1c2;
     border-radius: 9px;
     width: 300px;
     margin: 0 auto;
@@ -26,7 +26,7 @@
   }
   
   .form-container button {
-    background-color: hwb(245 53% 3%);
+    background-color: #f393c8c2;
     color: white;
     padding: 5px 10px;
     font-size: 15px;
@@ -40,3 +40,14 @@
   .form-container button:hover {
     background-color: #45a049;
   }
+
+h3 {
+  font-family: 'Montserrat', sans-serif; 
+  font-size: 14px; 
+  font-weight: 400; 
+  color: black; 
+  margin: 10px 0;
+  text-align: center;
+
+}
+  
