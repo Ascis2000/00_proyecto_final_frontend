@@ -36,40 +36,58 @@
     }
   }
 
-  /* Media queries */
-  @media (max-width: 768px) {
-    .button-container {
-        gap: 10px;
+/* Móviles */
+@media (max-width: 480px) {
+  .button-container {
+    gap: 10px;
 
-        .chart-button {
-            flex: 0 1 calc(50% - 10px);
-            font-size: 12px; /* Botones más pequeños en pantallas móviles */
-            padding: 8px;
-        }
+    .chart-button {
+        flex: 0 1 calc(50% - 10px);
+        font-size: 12px; /* Botones más pequeños en pantallas móviles */
+        padding: 8px;
     }
 }
+}
 
-@media (min-width: 769px) and (max-width: 1024px) {
+/* Móviles grandes y tablets pequeñas */
+@media (min-width: 481px) and (max-width: 768px) {
   .button-container {
-      gap: 15px; /* Espaciado ligeramente mayor */
+    gap: 10px; /* Espacio moderado */
+    flex-wrap: wrap; /* Botones ajustables */
 
-      .chart-button {
-          flex: 0 1 calc(33.33% - 15px); /* 3 columnas en pantallas medianas */
-          font-size: 14px; /* Tamaño del texto ligeramente mayor */
-          padding: 12px; /* Aumentar padding */
-      }
+    .chart-button {
+      flex: 0 1 calc(50% - 10px); /* 2 botones por fila */
+      font-size: 12px; /* Botones más pequeños */
+      padding: 8px; /* Ajustar padding */
+    }
   }
 }
 
+/* Tablets grandes y portátiles pequeños */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .button-container {
+    gap: 15px; /* Espaciado ligeramente mayor */
+    flex-wrap: wrap; /* Botones en filas ajustables */
+
+    .chart-button {
+      flex: 0 1 calc(33.33% - 15px); /* 3 botones por fila */
+      font-size: 14px; /* Tamaño del texto ligeramente mayor */
+      padding: 12px; /* Padding más grande */
+    }
+  }
+}
+
+/* Sobremesas y monitores grandes */
 @media (min-width: 1025px) {
   .button-container {
-      gap: 20px; /* Más espaciado entre botones */
+    gap: 20px; /* Más espaciado entre botones */
+    flex-wrap: wrap; /* Botones ajustables */
 
-      .chart-button {
-          flex: 0 1 calc(25% - 20px); /* 4 columnas en pantallas grandes */
-          font-size: 16px; /* Texto más grande */
-          padding: 15px; /* Padding amplio */
-      }
+    .chart-button {
+      flex: 0 1 calc(25% - 20px); /* 4 botones por fila */
+      font-size: 16px; /* Texto más grande */
+      padding: 15px; /* Padding amplio */
+    }
   }
 }
 }

@@ -43,46 +43,69 @@
 /* Media Queries */
 
 /* Pantallas pequeñas (móviles) */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
     .chart-container {
         margin: 10px auto; /* Reduce el margen */
     }
 
     .chart-heading {
-        font-size: 20px; /* Reduce el tamaño de la fuente */
+        font-size: 18px; /* Fuente más pequeña para pantallas reducidas */
     }
 
     .button-container {
-        gap: 10px; /* Reduce el espacio entre botones */
+        gap: 8px; /* Reduce el espacio entre botones */
+        flex-wrap: wrap; /* Permite que los botones se ajusten en línea */
     }
 
     .chart-button {
-        font-size: 14px; /* Botones más pequeños */
+        font-size: 12px; /* Botones más pequeños */
+        padding: 6px 12px; /* Relleno reducido */
+    }
+}
+
+/* Tablets */
+@media (min-width: 481px) and (max-width: 768px) {
+    .chart-container {
+        margin: 12px auto;
+    }
+
+    .chart-heading {
+        font-size: 20px; /* Ajuste de fuente */
+    }
+
+    .button-container {
+        gap: 10px; /* Espaciado intermedio */
+        justify-content: center; /* Centra los botones */
+    }
+
+    .chart-button {
+        font-size: 14px; /* Botones ligeramente más grandes */
         padding: 8px 16px; /* Ajusta el relleno */
     }
 }
 
-/* Pantallas medianas (tablets) */
+/* Portátiles */
 @media (min-width: 769px) and (max-width: 1024px) {
     .chart-container {
         margin: 15px auto;
     }
 
     .chart-heading {
-        font-size: 22px; /* Ajusta el tamaño de la fuente */
+        font-size: 22px; /* Fuente más grande */
     }
 
     .button-container {
         gap: 12px; /* Espaciado intermedio entre botones */
+        justify-content: center;
     }
 
     .chart-button {
-        font-size: 15px; /* Botones ligeramente más pequeños */
+        font-size: 15px; /* Botones ligeramente más grandes */
         padding: 9px 18px; /* Ajusta el relleno */
     }
 }
 
-/* Pantallas grandes (desktops) */
+/* Sobremesa */
 @media (min-width: 1025px) {
     .chart-container {
         margin: 20px auto;

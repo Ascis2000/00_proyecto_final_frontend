@@ -9,24 +9,40 @@
       margin-bottom: 10px;
     }
   
-    /* Media queries */
-    @media (max-width: 768px) {
-      .chart-pie {
-        max-width: 100%; /* Ocupa todo el ancho */
-        height: 300px;
-      }
-    }
-  
-    @media (min-width: 769px) and (max-width: 1024px) {
-      .chart-pie {
-        max-width: 80%;
-      }
-    }
-  
-    @media (min-width: 1025px) {
-      .chart-pie {
-        max-width: 600px; /* Gráfica más grande en pantallas amplias */
-      }
-    }
+/* Móviles pequeños */
+@media (max-width: 480px) {
+  .chart-pie {
+    max-width: 100%; /* Ocupa todo el ancho disponible */
+    height: 250px; /* Altura más reducida para pantallas pequeñas */
+    margin: 0 auto; /* Centrar la gráfica */
   }
+}
+
+/* Móviles grandes y tablets pequeñas */
+@media (min-width: 481px) and (max-width: 768px) {
+  .chart-pie {
+    max-width: 100%; /* Ocupa todo el ancho */
+    height: 300px; /* Altura moderada */
+    margin: 0 auto; /* Centrar la gráfica */
+  }
+}
+
+/* Tablets grandes y portátiles pequeños  */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .chart-pie {
+    max-width: 80%; /* Gráfica más compacta */
+    height: 350px; /* Incrementa la altura ligeramente */
+    margin: 0 auto; /* Centrar la gráfica */
+  }
+}
+
+/* Sobremesas y monitores grandes */
+@media (min-width: 1025px) {
+  .chart-pie {
+    max-width: 600px; /* Gráfica más grande en pantallas amplias */
+    height: 400px; /* Altura máxima */
+    margin: 0 auto; /* Centrar la gráfica */
+  }
+}
+}
   
