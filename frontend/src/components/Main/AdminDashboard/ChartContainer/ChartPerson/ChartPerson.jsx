@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import ChartPie from './ChartPie';
-import '../../../../../styles/components/_ChartsContainer.scss'
+import '../../../../../styles/components/_ChartsContainer.scss';
+import '../../../../../styles/components/_ChartPerson.scss';
+
 
 const groupBy = (key, data = []) => {
   const groups = data.reduce((acc, item) => {
@@ -26,7 +28,7 @@ const ChartPerson = ({ users }) => {
 
   return (
     <div className="chart-container">
-      <h2 className="chart-heading">Selecciona una categoría:</h2>
+      <h4 className="chart-heading">Selecciona una categoría:</h4>
 
       <div className="button-container">
         <button className="chart-button" onClick={() => toggleChart('pais')}>
