@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import ChartPie from './ChartPie';
+import ChartPieEdad from './ChartPieEdad';
 import '../../../../../styles/components/_ChartsContainer.scss';
 import '../../../../../styles/components/_ChartPerson.scss';
-
+import * as XLSX from "xlsx";
 
 const groupBy = (key, data = []) => {
   const groups = data.reduce((acc, item) => {
@@ -14,20 +15,61 @@ const groupBy = (key, data = []) => {
   return Object.entries(groups).map(([label, count]) => ({ label, count }));
 };
 
+// Función para filtrar y agrupar por rango de edades
+const groupByAgeRange = (data = []) => {
+  const groups = data.reduce((acc, item) => {
+    const age = item.edad;
+    if (age !== undefined) {
+      const rangeStart = Math.floor(age / 10) * 10;
+      const rangeEnd = rangeStart + 9;
+      const rangeLabel = `${rangeStart}-${rangeEnd}`;
+      acc[rangeLabel] = (acc[rangeLabel] || 0) + 1;
+    }
+    return acc;
+  }, {});
+  return Object.entries(groups).map(([label, count]) => ({ label, count }));
+};
+
+// Función para descargar en Excel
+const handleDownloadExcel = (category, users) => {
+  const filteredData = category === 'edad' ? groupByAgeRange(users) : groupBy(category, users);
+
+  const worksheet = XLSX.utils.json_to_sheet(filteredData);
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Datos");
+
+  XLSX.writeFile(workbook, `datos_${category}.xlsx`);
+};
+
+// Función para descargar en CSV
+const handleDownloadCSV = (category, users) => {
+  const filteredData = category === 'edad' ? groupByAgeRange(users) : groupBy(category, users);
+
+  const csvContent =
+    "data:text/csv;charset=utf-8," +
+    filteredData.map((row) => `${row.label},${row.count}`).join("\n");
+
+  const encodedUri = encodeURI(csvContent);
+  const link = document.createElement("a");
+  link.setAttribute("href", encodedUri);
+  link.setAttribute("download", `datos_${category}.csv`);
+  document.body.appendChild(link);
+  link.click();
+};
+
 const ChartPerson = ({ users }) => {
-  const [visibleChart, setVisibleChart] = useState(null); 
+  const [visibleChart, setVisibleChart] = useState(null);
 
   if (!Array.isArray(users) || users.length === 0) {
     return <p>No hay datos disponibles para mostrar.</p>;
   }
-
 
   const toggleChart = (chartName) => {
     setVisibleChart((prev) => (prev === chartName ? null : chartName));
   };
 
   return (
-    <div className="chart-container">
+    <div className="chart-container"> {/* Clase específica para invitados */}
       <h4 className="chart-heading">Selecciona una categoría:</h4>
 
       <div className="button-container">
@@ -45,10 +87,36 @@ const ChartPerson = ({ users }) => {
         </button>
       </div>
 
-      {visibleChart === 'pais' && <ChartPie title="Distribución por País" data={groupBy('pais', users)} />}
-      {visibleChart === 'genero' && <ChartPie title="Distribución por Género" data={groupBy('genero', users)} />}
-      {visibleChart === 'orien_sex' && <ChartPie title="Distribución por Orientación Sexual" data={groupBy('orien_sex', users)} />}
-      {visibleChart === 'edad' && <ChartPie title="Distribución por Edad" data={groupBy('edad', users)} />}
+      {visibleChart && (
+        <div className="chart-visualization">
+          {visibleChart === 'edad' ? (
+            <ChartPieEdad
+              title="Distribución por Edad"
+              data={groupByAgeRange(users)}
+              rawData={users}
+            />
+          ) : (
+            <ChartPie
+              title={`Distribución por ${visibleChart.charAt(0).toUpperCase() + visibleChart.slice(1)}`}
+              data={groupBy(visibleChart, users)}
+            />
+          )}
+          <div className="download-buttons">
+            <button
+              className="download-button"
+              onClick={() => handleDownloadExcel(visibleChart, users)}
+            >
+              Descargar en Excel
+            </button>
+            <button
+              className="download-button"
+              onClick={() => handleDownloadCSV(visibleChart, users)}
+            >
+              Descargar en CSV
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
