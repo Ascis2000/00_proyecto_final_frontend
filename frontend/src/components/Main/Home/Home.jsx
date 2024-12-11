@@ -36,28 +36,15 @@ const Home = () => {
 	}, [isAuthenticated, user]);
 	
 	return (
-		<div className="home">
-			{
-				/* isAuthenticated ? (
-					<>
-						<h2>Usuario: {user?.nombre}</h2>
-						<p>Tu tipo de rol actual es:
-							{
-								user?.role == 1 ? " No Premium" :
-								user?.role == 2 ? " Premium" : " Admin"
-							}
-						</p>
-					</>
-				) : (
-					<>
-						<div>
-							<h2>Bienvenid@ al Proyecto Final</h2>
-						</div>
-					</>
-				) */
-			}
-		</div>
-	);
+			<div className="home-container">
+			  <img
+				src="/home.png"
+				alt="Fondo de Home"
+				className="home-background"
+			  />
+			  
+			</div>
+		  );
 };
 
 export default Home;

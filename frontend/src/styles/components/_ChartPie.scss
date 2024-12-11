@@ -1,36 +1,54 @@
 .chart-pie {
   width: 100%;
-  max-width: 600px; /* Máximo ancho */
+  max-width: 600px; /* Máximo ancho inicial */
   margin: 0 auto; /* Centrado */
   text-align: center;
+  position: relative; /* Deja que esté en el flujo normal */
+  height: auto; /* Ajusta dinámicamente la altura */
 
   h3 {
     font-size: 18px;
     margin-bottom: 15px; /* Espacio adicional debajo del título */
   }
 
-  /* Incrementamos la altura general del contenedor */
   .echarts-for-react {
     height: 450px; /* Altura general ajustada */
   }
+  .guests {
+    margin-bottom: 50px; /* Añade espacio extra debajo de las gráficas de invitados */
+  }
+  
+  .chart-visualization {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd; /* Opcional: Línea para separar visualmente */
+  }
+
+  /* Media Queries */
 
   /* Móviles pequeños */
   @media (max-width: 480px) {
-    .chart-pie {
-      max-width: 100%; /* Ocupa todo el ancho disponible */
-      margin: 0 auto; /* Centrar la gráfica */
+    max-width: 100%; /* Ocupa todo el ancho disponible */
+    margin: 0 auto; /* Centrar la gráfica */
+
+    h3 {
+      font-size: 16px; /* Fuente más pequeña */
+      margin-bottom: 10px; /* Espacio reducido */
     }
 
     .echarts-for-react {
-      height: 300px; /* Altura moderada para pantallas pequeñas */
+      height: 300px; /* Altura más baja */
     }
   }
 
   /* Móviles grandes y tablets pequeñas */
   @media (min-width: 481px) and (max-width: 768px) {
-    .chart-pie {
-      max-width: 100%; /* Ocupa todo el ancho */
-      margin: 0 auto; /* Centrar la gráfica */
+    max-width: 100%; /* Ocupa todo el ancho */
+    margin: 0 auto; /* Centrar la gráfica */
+
+    h3 {
+      font-size: 17px; /* Tamaño intermedio */
+      margin-bottom: 12px; /* Ajuste del espacio */
     }
 
     .echarts-for-react {
@@ -40,9 +58,12 @@
 
   /* Tablets grandes y portátiles pequeños */
   @media (min-width: 769px) and (max-width: 1024px) {
-    .chart-pie {
-      max-width: 10%; /* Gráfica más compacta */
-      margin: 0 auto; /* Centrar la gráfica */
+    max-width: 80%; /* Gráfica más compacta */
+    margin: 0 auto; /* Centrar la gráfica */
+
+    h3 {
+      font-size: 20px; /* Fuente ligeramente mayor */
+      margin-bottom: 15px; /* Ajuste del espacio */
     }
 
     .echarts-for-react {
@@ -51,14 +72,32 @@
   }
 
   /* Sobremesas y monitores grandes */
-  @media (min-width: 1025px) {
-    .chart-pie {
-      max-width: 900px; /* Gráfica más grande en pantallas amplias */
-      margin: 0 auto; /* Centrar la gráfica */
+  @media (min-width: 1025px) and (max-width: 3840px) {
+    max-width: 900px; /* Gráfica más grande */
+    margin: 0 auto; /* Centrar la gráfica */
+
+    h3 {
+      font-size: 22px; /* Título más grande */
+      margin-bottom: 18px; /* Más espacio debajo */
     }
 
     .echarts-for-react {
-      height: 450px; /* Altura máxima */
+      height: 450px; /* Altura estándar */
+    }
+  }
+
+  /* Pantallas muy grandes (4K, 45/75 pulgadas) */
+  @media (min-width: 3841px) {
+    max-width: 1200px; /* Gráfica aún más grande */
+    margin: 0 auto; /* Centrar la gráfica */
+
+    h3 {
+      font-size: 24px; /* Título aún más grande */
+      margin-bottom: 20px; /* Más espacio debajo */
+    }
+
+    .echarts-for-react {
+      height: 600px; /* Altura extendida */
     }
   }
 }

@@ -74,8 +74,6 @@ const UserForm = ({ actionProvider }) => {
 	return (
 		<div >
 			<h3>Por favor, ingresa tus datos:</h3>
-			{/* Mensaje de error */}
-			{error && <p style={{ color: 'red' }}>{error}</p>}
 			<div className="form-container">
 
 				{/* Selector para el País */}
@@ -99,6 +97,7 @@ const UserForm = ({ actionProvider }) => {
 					<option value="Masculino">Masculino</option>
 					<option value="Femenino">Femenino</option>
 					<option value="No Binario">No Binario</option>
+					<option value="No Binario">Prefiero no decirlo</option>
 				</select>
 
 				<label htmlFor="orien_sex">Orientación:</label>
@@ -108,16 +107,11 @@ const UserForm = ({ actionProvider }) => {
 					onChange={handleChange}
 				>
 					<option value="" disabled>Selecciona tu orientación</option>
-					<option value="Heterosexualidad">Heterosexualidad</option>
-					<option value="Homosexualidad">Homosexualidad</option>
-					<option value="Bisexualidad">Bisexualidad</option>
-					<option value="Pansexualidad">Pansexualidad</option>
-					<option value="Asexualidad">Asexualidad</option>
-					<option value="Demisexualidad">Demisexualidad</option>
-					<option value="Androsexualidad">Androsexualidad</option>
-					<option value="Ginesexualidad">Ginesexualidad</option>
-					<option value="Gris-asexualidad">Gris-asexualidad</option>
-					<option value="Otro">Otro</option>
+					<option value="Heterosexualidad">Heterosexual</option>
+					<option value="Homosexualidad">Homosexual</option>
+					<option value="Bisexualidad">Bisexual</option>
+					<option value="Asexualidad">Lesbiana</option>
+					<option value="Otro">Otra</option>
 				</select>
 
 				<label htmlFor="provincia">Provincia:</label>
@@ -192,6 +186,7 @@ const UserForm = ({ actionProvider }) => {
 				/>
 
 				<button onClick={handleSubmit}>Enviar</button>
+				{error && <p style={{ color: 'red' }}>{error}</p>}
 			</div>
 		</div>
 	);

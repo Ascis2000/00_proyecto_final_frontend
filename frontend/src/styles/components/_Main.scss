@@ -3,44 +3,44 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    max-width: 100%; /* Asegura que todos los elementos no excedan el ancho */
+    max-width: 100%; 
     }
 
 body {
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* Evita el desplazamiento horizontal */
-    max-width: 100%; /* Restringe el ancho al 100% de la pantalla */
-    box-sizing: border-box; /* Incluye padding y border en el tamaño de los elementos */
+    overflow-x: hidden; 
+    max-width: 100%;
+    box-sizing: border-box; 
 }
 
 .boxApp {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    max-width: 100%; /* Limita el ancho */
-    overflow-x: hidden; /* Oculta desbordamiento horizontal */
+    max-width: 100%; 
+    overflow-x: hidden;
     
 }
 
 main {
     flex: 1;
-    margin-top: 70px; /* Ajusta según la altura del header */
+    margin-top: 70px; 
     width: 100%;
-    max-width: 100vw; /* Evita que exceda el ancho del viewport */
-    overflow-x: hidden; /* Oculta cualquier desbordamiento horizontal */
+    max-width: 100vw; 
+    overflow-x: hidden; 
 }
 
-/* Títulos */
+
 h1 {
     text-align: center;
 }
 
-/* Ajustes de gráficos */
+
 .echarts-for-react {
     padding-top: 80px;
 }
-/* Botón flotante */
+
 .chatbot-toggle-button {
   position: fixed;
   bottom: 180px; 
@@ -60,7 +60,7 @@ h1 {
   z-index: 1050; 
 }
 
-/* Contenedor del chatbot */
+
 .chatbot-container {
   position: fixed;
   bottom: 90px; 
@@ -71,8 +71,8 @@ h1 {
 
 .chatbot-close-button {
     position: absolute;
-    top:-200px;
-    right: 10px;
+    top:-160px;
+    right: 30px;
     background: none;
     border: none;
     font-size: 20px;
@@ -90,39 +90,69 @@ h1 {
     }
   
     .chatbot-close-button {
-      top: -320px; 
-      right: -5px; 
+      top: -235px; 
+      right: 8px; 
       width: 20px; 
       height: 25px;
       font-size: 15px; 
     }
   }
 
+  @media (min-width: 769px) and (max-width: 1024px){
+    .chatbot-close-button {
+        top: -100px; 
+        right: 8px; 
+        width: 20px; 
+        height: 25px;
+        font-size: 20px; 
+      }
+  }
+ @media (min-width: 3841px) {
+    .chatbot-close-button {
+        top: -235px; 
+        right: 8px; 
+        width: 20px; 
+        height: 25px;
+        font-size: 20px; 
+      }
+ }
+
 
   
 
-/* Media queries */
-@media (max-width: 768px) { /* Pantallas pequeñas (móviles) */
+
+@media (max-width: 768px) { 
     main {
-        margin-top: 50px; /* Ajusta si el header tiene menor altura en móviles */
+        margin-top: 50px; 
     }
 
     .echarts-for-react {
-        padding-top: 50px; /* Ajusta para móviles si es necesario */
+        padding-top: 50px; 
     }
 }
 
-@media (min-width: 769px) and (max-width: 1024px) { /* Pantallas medianas (tablets) */
+@media (min-width: 769px) and (max-width: 1024px) { 
     main {
-        margin-top: 65px; /* Ajusta según la altura del header en tablets */
+        margin-top: 65px; 
     }
 
     .echarts-for-react {
-        padding-top: 70px; /* Ajuste adicional si es necesario */
+        padding-top: 70px; 
     }
 }
 
-@media (min-width: 1025px) { /* Pantallas grandes (desktops) */
+ 
+@media (min-width: 1025px) and (max-width: 3840px) { /* Pantallas grandes (desktops) */
+
+    main {
+        margin-top: 70px; 
+    }
+
+    .echarts-for-react {
+        padding-top: 80px; 
+    }
+}
+@media (min-width: 3841px) { /* Pantallas grandes (desktops) */
     main {
         margin-top: 70px; /* Ajusta según la altura del header en desktops */
     }
@@ -131,4 +161,5 @@ h1 {
         padding-top: 80px; /* Estilo estándar para pantallas grandes */
     }
 }
+
 
