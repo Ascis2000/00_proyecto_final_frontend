@@ -1,0 +1,61 @@
+.home-container {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  
+    .home-background {
+      width: 100%; /* Ocupa todo el ancho del contenedor */
+      height: 100%; /* Ocupa todo el alto del contenedor */
+      object-fit: cover; /* Ajusta la imagen sin distorsionarla */
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1; /* Coloca la imagen detrás del contenido */
+    }
+  
+    .home-title {
+      position: relative;
+      z-index: 1; /* Asegura que el texto esté sobre la imagen */
+      font-size: 3rem;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    }
+  }
+  
+  /* Media Queries */
+  
+  /* Móviles pequeños */
+  @media (max-width: 480px) {
+    .home-title {
+      font-size: 2rem; /* Tamaño más pequeño del texto */
+    }
+  }
+  
+  /* Tablets */
+  @media (min-width: 481px) and (max-width: 768px) {
+    .home-title {
+      font-size: 2.5rem;
+    }
+  }
+  
+  /* Pantallas grandes */
+  @media (min-width: 1025px) and (max-width: 3840px) {
+    .home-title {
+      font-size: 4rem; /* Tamaño más grande en sobremesas */
+    }
+  }
+  
+  /* Pantallas muy grandes */
+  @media (min-width: 1025px) and (max-width: 3840px) {
+    .home-title {
+      font-size: 5rem; /* Aumenta aún más para pantallas grandes */
+    }
+  
+    @media (min-width: 3841px) {
+        .home-title {
+          font-size: 5rem; /* Aumenta aún más para pantallas grandes */
+        }  
+  }
+}
