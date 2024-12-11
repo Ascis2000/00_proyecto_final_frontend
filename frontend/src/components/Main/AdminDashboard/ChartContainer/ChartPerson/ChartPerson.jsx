@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ChartPie from './ChartPie';
+import ChartPieEdad from './ChartPieEdad';
 import '../../../../../styles/components/_ChartsContainer.scss';
 import '../../../../../styles/components/_ChartPerson.scss';
 import * as XLSX from "xlsx";
@@ -14,9 +15,24 @@ const groupBy = (key, data = []) => {
   return Object.entries(groups).map(([label, count]) => ({ label, count }));
 };
 
+// Función para filtrar y agrupar por rango de edades
+const groupByAgeRange = (data = []) => {
+  const groups = data.reduce((acc, item) => {
+    const age = item.edad;
+    if (age !== undefined) {
+      const rangeStart = Math.floor(age / 10) * 10;
+      const rangeEnd = rangeStart + 9;
+      const rangeLabel = `${rangeStart}-${rangeEnd}`;
+      acc[rangeLabel] = (acc[rangeLabel] || 0) + 1;
+    }
+    return acc;
+  }, {});
+  return Object.entries(groups).map(([label, count]) => ({ label, count }));
+};
+
 // Función para descargar en Excel
 const handleDownloadExcel = (category, users) => {
-  const filteredData = groupBy(category, users);
+  const filteredData = category === 'edad' ? groupByAgeRange(users) : groupBy(category, users);
 
   const worksheet = XLSX.utils.json_to_sheet(filteredData);
   const workbook = XLSX.utils.book_new();
@@ -27,7 +43,7 @@ const handleDownloadExcel = (category, users) => {
 
 // Función para descargar en CSV
 const handleDownloadCSV = (category, users) => {
-  const filteredData = groupBy(category, users);
+  const filteredData = category === 'edad' ? groupByAgeRange(users) : groupBy(category, users);
 
   const csvContent =
     "data:text/csv;charset=utf-8," +
@@ -73,10 +89,18 @@ const ChartPerson = ({ users }) => {
 
       {visibleChart && (
         <div className="chart-visualization">
-          <ChartPie
-            title={`Distribución por ${visibleChart.charAt(0).toUpperCase() + visibleChart.slice(1)}`}
-            data={groupBy(visibleChart, users)}
-          />
+          {visibleChart === 'edad' ? (
+            <ChartPieEdad
+              title="Distribución por Edad"
+              data={groupByAgeRange(users)}
+              rawData={users}
+            />
+          ) : (
+            <ChartPie
+              title={`Distribución por ${visibleChart.charAt(0).toUpperCase() + visibleChart.slice(1)}`}
+              data={groupBy(visibleChart, users)}
+            />
+          )}
           <div className="download-buttons">
             <button
               className="download-button"
