@@ -70,7 +70,7 @@ const ChartPerson = ({ users }) => {
 
   return (
     <div className="chart-container"> {/* Clase específica para invitados */}
-      <h4 className="chart-heading">Gráficas de invitados</h4>
+      <h4 className="chart-heading">Selecciona una categoría:</h4>
 
       <div className="button-container">
         <button className="chart-button" onClick={() => toggleChart('pais')}>
