@@ -40,6 +40,7 @@ const UserForm = ({ actionProvider }) => {
 	  };
 
 	const handleSubmit = () => {
+
 		//validacion 
 		if (
 			!formData.pais ||
@@ -65,8 +66,7 @@ const UserForm = ({ actionProvider }) => {
 			.then((data) => {
 				console.log('Usuario creado:', data);
 				console.log("Usuario=", formData.tipoFormulario)
-				actionProvider.handleUserSubmit(formData.tipoFormulario);
-
+				actionProvider.handleActionSubmit(formData.tipoFormulario, data.usuario_id);
 			})
 			.catch((error) => console.error('Error:', error));
 	};

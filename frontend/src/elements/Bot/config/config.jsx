@@ -6,61 +6,26 @@ import UserForm from '../../../components/Main/ChatBot/UserForm';
 import StartOptions from '../../../components/Main/StartOptions/StartOptions';
 import ShowHTML from '../../../components/Main/ShowHTML/ShowHTML';
 
-const botName = 'Eve';
+const botName = 'Cristina';
 
 const headerWidget = () => React.createElement(
 	'div',
 	{
 		className: 'header',
 	},
-	`CHATBOT con ${botName}`
+	`ChatBot con ${botName}`
 );
 
-const parseTextWithLinks = (texto) => {
-	// Expresión regular para detectar URLs
-	const urlPattern = /https?:\/\/[^\s]+/g;
-
-	// Dividir el texto por las URLs
-	const partes = texto.split(urlPattern);
-
-	// Extraer las URLs coincidentes
-	const urls = texto.match(urlPattern);
-
-	// Crear el contenido como JSX
-	const resultado = [];
-	partes.forEach((parte, index) => {
-		// Agregar la parte de texto normal
-		if (parte) {
-			resultado.push(<span key={`text-${index}`}>{parte}</span>);
-		}
-		// Agregar la URL como enlace
-		if (urls && urls[index]) {
-			resultado.push(
-				<a
-					key={`link-${index}`}
-					href={urls[index]}
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					{urls[index]}
-				</a>
-			);
-		}
-	});
-
-	return resultado;
-};
-
 const resetBot = (props) => {
-	setTimeout(() => {
-		// Usamos `setTimeout` para asegurarnos de que no ocurre durante el renderizado
-		props.setState((prev) => ({
-			...prev,
-			messages: config.initialMessages, // Reinicia los mensajes al estado inicial
-		}));
-	}, 0);
+    // Restablecer los mensajes y la configuración
+    setTimeout(() => {
+        props.setState((prevState) => ({
+            ...prevState,
+            messages: config.initialMessages,  // Restablece los mensajes al estado inicial
+            // Si es necesario, también puedes restablecer otras partes del estado aquí.
+        }));
+    }, 0);
 };
-
 
 // obtenemos el localStorage 'chatbot_perfil'
 const miPerfil = JSON.parse(localStorage.getItem('chatbot_perfil'));
@@ -92,31 +57,67 @@ const dynamicOptionsWidget = (props) => {
 			{options.map((option, index) => (
 				<button
 					key={index}
-					onClick={() => props.actionProvider.handleOptionSelection(option.nextQuestion, option.texto, option.fin)} // Manejar selección de opción
+					onClick={() => props.actionProvider.handleOptionSelection(
+						option.nextQuestion, 
+						option.texto, 
+						option.fin,
+						option.idPerfil,
+						option.id_pregunta,
+						option.id_respuesta
+					)} // Manejar selección de opción
 				>
-					{/* {option.nextQuestion} */}
 					{option.texto}
-					{/* {parseTextWithLinks(option.texto)} */}
-					FIN={option.fin ? "Sí" : "No"}
+					{/* Pregunta={option.nextQuestion}
+					Texto={option.texto}
+					FIN={option.fin ? "Sí" : "No"}<br></br>
+					Perfil={option.idPerfil}<br></br>
+					Pregunta={option.nextQuestion}<br></br>
+					Respuesta={option.id_respuesta} */}
 				</button>
 			))}
 		</div>
 	);
 };
 
+const finalOptionsButtons = (props) => {
+
+	const options = props.payload.options;
+
+	console.log("OPTIONS=", options.tPerfil)
+	
+	let pregunta = (options.tPerfil == "usuario") ? 1 : 6;
+
+	// si 'chatbot_perfil' no es nulo
+	if(miPerfil == null){
+		return (
+			<div className="botones">
+				<button
+					onClick={() => props.actionProvider.handleOptionSelection(pregunta, "SI", false, options.iPerfil)}>
+						SI
+				</button>
+				<button 
+					//onClick={() => window.location.reload() }>
+					onClick={() => resetBot(props) }>
+						NO
+				</button>
+			</div>
+		);
+	}
+};
+
 const config = {
 	botName: botName,
 	initialMessages: [
 		createChatBotMessage(`Hola! Mi nombre es ${botName}.
-			Bienvenide al Chatbot de Información sobre vih de FELGTBI+. Estoy
-			aquí para brindarte información confiable y orientación de manera confidencial.
+			Bienvenide al Chatbot de Información sobre vih de FELGTBI+. 
 			`, {
 			// Primer mensaje del bot
-			delay: 500, // Tiempo para que el mensaje aparezca con el indicador de "escribiendo"
+			delay: 1000, // Tiempo para que el mensaje aparezca con el indicador de "escribiendo"
 		}),
-
+		createChatBotMessage("Estoy aquí para brindarte información confiable y orientación de manera confidencial.", {}),
 		createChatBotMessage("¿Cómo puedo ayudarte mejor? Por favor selecciona una opción:", {
 			widget: "wg_startOptionsButtons",
+			delay: 1200,
 		}),
 
 		/* createChatBotMessage("Por favor, selecciona una opción:", {
@@ -170,7 +171,11 @@ const config = {
 		{
 			widgetName: "showHTML",
 			widgetFunc: (props) => <ShowHTML {...props} />,
-		}
+		},
+		{
+			widgetName: "wg_finalOptionsButtons",
+			widgetFunc: finalOptionsButtons,
+		},
 	],
 
 	customStyles: {

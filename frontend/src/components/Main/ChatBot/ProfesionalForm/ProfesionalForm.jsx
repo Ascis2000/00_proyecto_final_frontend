@@ -64,7 +64,7 @@ const ProfesionalForm = ({ actionProvider }) => {
 			.then((data) => {
 				console.log('Profesional creado:', data);
 				console.log("Profesional=", formData.tipoFormulario)
-				actionProvider.handleUserSubmit(formData.tipoFormulario);
+				actionProvider.handleActionSubmit(formData.tipoFormulario, data.profesional_id);
 			})
 			.catch((error) => console.error('Error:', error));
 	};
