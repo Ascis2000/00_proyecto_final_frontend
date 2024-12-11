@@ -177,9 +177,6 @@ const config = {
 		botMessageBox: {
 			backgroundColor: '#E2007E',
 		},
-		chatButton: {
-			backgroundColor: '#EEEEEE',
-		},
 	},
 
 	customComponents: {
