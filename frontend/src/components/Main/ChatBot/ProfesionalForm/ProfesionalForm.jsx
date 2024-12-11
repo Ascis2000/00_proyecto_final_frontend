@@ -265,8 +265,6 @@ const ProfesionalForm = ({ actionProvider }) => {
   return (
     <div>
       <h3>Por favor, ingresa tus datos:</h3>
-
-      {error && <p style={{ color: 'red' }}>{error}</p>}
       <div className="form-container">
         <label htmlFor="provincia">Provincia:</label>
         <select name="provincia" value={formData.provincia} onChange={handleChange}>
@@ -358,6 +356,7 @@ const ProfesionalForm = ({ actionProvider }) => {
         </select>
 
         <button onClick={handleSubmit}>Enviar</button>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
       </div>
     </div>
   );
