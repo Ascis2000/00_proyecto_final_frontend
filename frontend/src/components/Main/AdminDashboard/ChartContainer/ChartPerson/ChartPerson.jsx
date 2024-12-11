@@ -53,8 +53,8 @@ const ChartPerson = ({ users }) => {
   };
 
   return (
-    <div className="chart-container">
-      <h4 className="chart-heading">Selecciona una categoría:</h4>
+    <div className="chart-container"> {/* Clase específica para invitados */}
+      <h4 className="chart-heading">Gráficas de invitados</h4>
 
       <div className="button-container">
         <button className="chart-button" onClick={() => toggleChart('pais')}>
@@ -72,7 +72,7 @@ const ChartPerson = ({ users }) => {
       </div>
 
       {visibleChart && (
-        <div>
+        <div className="chart-visualization">
           <ChartPie
             title={`Distribución por ${visibleChart.charAt(0).toUpperCase() + visibleChart.slice(1)}`}
             data={groupBy(visibleChart, users)}
