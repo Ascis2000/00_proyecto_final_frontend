@@ -206,7 +206,10 @@ const ProfesionalForm = ({ actionProvider }) => {
     Hospitalaria: ["Medicina"],
     "Salud publica": ["Medicina"],
     Enfermería: ["Enfermería General", "Neonatología", "Salud Pública", "Medicina Preventiva", "Cuidados Intensivos"],
-    Medicina: ["Medicina General", "Medicina Familiar y Comunitaria", "Cardiología", "Endocrinología y Nutrición", "Gastroenterología", "Hematología", "Inmunología Clínica", "Infectología", "Nefrología", "Neumología", "Neurología", "Oncología Médica", "Reumatología", "Medicina Interna", "Geriatría", "Medicina Paliativa"],
+    Medicina: ["Medicina General", "Medicina Familiar y Comunitaria", "Cardiología", "Endocrinología y Nutrición", "Gastroenterología", "Hematología", "Inmunología Clínica", "Infectología (Enfermedades Infecciosas)", "Nefrología", "Neumología", "Neurología", "Oncología Médica", "Reumatología", "Medicina Interna", "Geriatría", "Medicina Paliativa", "Cirugía General", "Cirugía Cardiovascular", "Cirugía Plástica, Estética y Reparadora",
+      "Cirugía Torácica", "Cirugía Vascular", "Neurocirugía", "Oftalmología", "Otorrinolaringología", "Traumatología y Ortopedia", "Urología", "Obstetricia y Ginecología", "Pediatría", "Neonatología", "Medicina Fetal", "Medicina Reproductiva", "Radiología", "Medicina Nuclear", "Anatomía Patológica", "Genética Médica", "Bioquímica Clínica", "Medicina de Emergencias", "Medicina Intensiva", "Anestesiología y Reanimación", "Epidemiología",
+      "Salud Pública", "Medicina del Trabajo", "Medicina Preventiva", "Medicina Física y Rehabilitación", "Odontología General", "Ortodoncia", "Cirugía Maxilofacial", "Periodoncia", "Endodoncia", "Prostodoncia", "Odontopediatría", "Farmacia Clínica", "Dietética y Nutrición", "Logopedia", "Terapia Respiratoria", "Podología", "Audiología", "Acupuntura", "Homeopatía", "Naturopatía", "Medicina Integrativa", "Dermatología", "Medicina del Deporte", "Toxicología", "Medicina Forense", "Medicina Espacial", "Telemedicina"
+    ],
     Psicología: ["Psicología Clínica", "Neuropsicología"],
     "Trabajo Social": ["Trabajo Social", "Terapia Ocupacional"],
   };
@@ -274,7 +277,54 @@ const ProfesionalForm = ({ actionProvider }) => {
           <option value="Álava">Álava</option>
           <option value="Albacete">Albacete</option>
           <option value="Alicante">Alicante</option>
-          {/* Añade las demás provincias */}
+          <option value="Almería">Almería</option>
+          <option value="Asturias">Asturias</option>
+          <option value="Ávila">Ávila</option>
+          <option value="Badajoz">Badajoz</option>
+          <option value="Barcelona">Barcelona</option>
+          <option value="Burgos">Burgos</option>
+          <option value="Cáceres">Cáceres</option>
+          <option value="Cádiz">Cádiz</option>
+          <option value="Cantabria">Cantabria</option>
+          <option value="Castellón">Castellón</option>
+          <option value="Ceuta">Ceuta</option>
+          <option value="Ciudad Real">Ciudad Real</option>
+          <option value="Córdoba">Córdoba</option>
+          <option value="La Coruña">La Coruña</option>
+          <option value="Cuenca">Cuenca</option>
+          <option value="Gerona">Gerona</option>
+          <option value="Granada">Granada</option>
+          <option value="Guadalajara">Guadalajara</option>
+          <option value="Gipuzkoa">Gipuzkoa</option>
+          <option value="Huelva">Huelva</option>
+          <option value="Huesca">Huesca</option>
+          <option value="Islas Baleares">Islas Baleares</option>
+          <option value="Jaén">Jaén</option>
+          <option value="La Rioja">La Rioja</option>
+          <option value="Las Palmas">Las Palmas</option>
+          <option value="León">León</option>
+          <option value="Lleida">Lleida</option>
+          <option value="Lugo">Lugo</option>
+          <option value="Madrid">Madrid</option>
+          <option value="Malaga">Málaga</option>
+          <option value="Melilla">Melilla</option>
+          <option value="Murcia">Murcia</option>
+          <option value="Navarra">Navarra</option>
+          <option value="Ourense">Ourense</option>
+          <option value="Palencia">Palencia</option>
+          <option value="Pontevedra">Pontevedra</option>
+          <option value="Salamanca">Salamanca</option>
+          <option value="Segovia">Segovia</option>
+          <option value="Sevilla">Sevilla</option>
+          <option value="Soria">Soria</option>
+          <option value="Tarragona">Tarragona</option>
+          <option value="Teruel">Teruel</option>
+          <option value="Toledo">Toledo</option>
+          <option value="Valencia">Valencia</option>
+          <option value="Valladolid">Valladolid</option>
+          <option value="Vizcaya">Vizcaya</option>
+          <option value="Zamora">Zamora</option>
+          <option value="Zaragoza">Zaragoza</option>
         </select>
 
         <label htmlFor="cod_postal">Código Postal:</label>
