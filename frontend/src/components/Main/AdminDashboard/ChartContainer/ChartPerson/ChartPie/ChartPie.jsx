@@ -19,7 +19,7 @@ const ChartPie = ({ title, data }) => {
       {
         name: title,
         type: 'pie',
-        radius: ['35%', '70%'],
+        radius: ['35%', '80%'],
         center: ['50%', '60%'],
         data: data.map((item) => ({ value: item.count, name: item.label })),
       },

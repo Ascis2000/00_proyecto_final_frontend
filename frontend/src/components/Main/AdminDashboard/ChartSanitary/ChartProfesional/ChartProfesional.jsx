@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import ChartPie from './ChartPie';
 import '../../../../../styles/components/_ChartsContainer.scss';
-//
+import '../../../../../styles/components/_ChartPerson.scss'; // Reutilizando estilos existentes
+import * as XLSX from "xlsx";    
 
 const groupBy = (key, data = []) => {
   const groups = data.reduce((acc, item) => {
@@ -11,6 +12,33 @@ const groupBy = (key, data = []) => {
     return acc;
   }, {});
   return Object.entries(groups).map(([label, count]) => ({ label, count }));
+};
+
+// Función para descargar en Excel
+const handleDownloadExcel = (category, users) => {
+  const filteredData = groupBy(category, users);
+
+  const worksheet = XLSX.utils.json_to_sheet(filteredData);
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Datos");
+
+  XLSX.writeFile(workbook, `datos_profesionales_${category}.xlsx`);
+};
+
+// Función para descargar en CSV
+const handleDownloadCSV = (category, users) => {
+  const filteredData = groupBy(category, users);
+
+  const csvContent =
+    "data:text/csv;charset=utf-8," +
+    filteredData.map((row) => `${row.label},${row.count}`).join("\n");
+
+  const encodedUri = encodeURI(csvContent);
+  const link = document.createElement("a");
+  link.setAttribute("href", encodedUri);
+  link.setAttribute("download", `datos_profesionales_${category}.csv`);
+  document.body.appendChild(link);
+  link.click();
 };
 
 const ChartProfesional = ({ users }) => {
@@ -40,9 +68,28 @@ const ChartProfesional = ({ users }) => {
         </button>
       </div>
 
-      {visibleChart === 'ciudad' && <ChartPie title="Distribución por Ciudad" data={groupBy('ciudad', users)} />}
-      {visibleChart === 'especialidad' && <ChartPie title="Distribución por Especialidad" data={groupBy('especialidad', users)} />}
-      {visibleChart === 'ambito' && <ChartPie title="Distribución por Ámbito" data={groupBy('ambito', users)} />}
+      {visibleChart && (
+        <div>
+          <ChartPie
+            title={`Distribución por ${visibleChart.charAt(0).toUpperCase() + visibleChart.slice(1)}`}
+            data={groupBy(visibleChart, users)}
+          />
+          <div className="download-buttons">
+            <button
+              className="download-button"
+              onClick={() => handleDownloadExcel(visibleChart, users)}
+            >
+              Descargar en Excel
+            </button>
+            <button
+              className="download-button"
+              onClick={() => handleDownloadCSV(visibleChart, users)}
+            >
+              Descargar en CSV
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -36,6 +36,26 @@
     }
   }
 
+  .download-buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  
+    .download-button {
+      padding: 10px 15px;
+      background-color: #44BAC1;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+  
+      &:hover {
+        background-color: #9C4AA0;
+      }
+    }
+  }
 /* Móviles */
 @media (max-width: 480px) {
   .button-container {
