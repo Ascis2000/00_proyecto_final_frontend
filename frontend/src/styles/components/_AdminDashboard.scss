@@ -1,35 +1,136 @@
 .dashboard {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: space-between;
-  padding: 20px;
-
-  /* Media Queries */
-  @media (max-width: 480px) { /* Móviles */
-      flex-direction: column; /* Las gráficas se apilan verticalmente */
-      align-items: center; /* Centra los elementos */
-      gap: 10px; /* Reduce el espacio entre elementos */
-      padding: 10px; /* Menos espacio alrededor */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    padding: 20px;
+  
+    /* Media Queries */
+  
+    @media (max-width: 480px) { /* Móviles */
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+  
+      .chart-container {
+        max-width: 100%;
+      }
+  
+      .chart-heading {
+        font-size: 18px;
+      }
+  
+      .chart-button {
+        font-size: 14px;
+        padding: 10px 20px;
+      }
+  
+      .download-buttons {
+        gap: 10px;
+        justify-content: center;
+      }
+    }
+  
+    @media (min-width: 481px) and (max-width: 768px) { /* Tablets */
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      padding: 15px;
+  
+      .chart-container {
+        max-width: 100%;
+      }
+  
+      .chart-heading {
+        font-size: 20px;
+      }
+  
+      .chart-button {
+        font-size: 16px;
+        padding: 12px 25px;
+      }
+  
+      .download-buttons {
+        gap: 12px;
+        justify-content: center;
+      }
+    }
+  
+    @media (min-width: 769px) and (max-width: 1024px) { /* Portátiles */
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      gap: 20px;
+      padding: 20px;
+  
+      .chart-container {
+        max-width: 90%;
+      }
+  
+      .chart-heading {
+        font-size: 24px;
+      }
+  
+      .chart-button {
+        font-size: 18px;
+        padding: 15px 30px;
+      }
+  
+      .download-buttons {
+        gap: 15px;
+        justify-content: center;
+      }
+    }
+  
+    @media (min-width: 1025px) and (max-width: 3840px) { /* Sobremesas */
+      justify-content: space-between;
+      gap: 20px;
+      padding: 20px;
+  
+      .chart-container {
+        max-width: 95%;
+      }
+  
+      .chart-heading {
+        font-size: 28px;
+      }
+  
+      .chart-button {
+        font-size: 20px;
+        padding: 18px 35px;
+      }
+  
+      .download-buttons {
+        gap: 20px;
+        justify-content: center;
+      }
+    }
+  
+    @media (min-width: 3841px) { /* Pantallas muy grandes */
+      justify-content: center;
+      gap: 30px;
+      padding: 30px;
+      max-width: 80%;
+      margin: 0 auto;
+  
+      .chart-container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+  
+      .chart-heading {
+        font-size: 36px;
+      }
+  
+      .chart-button {
+        font-size: 22px;
+        padding: 20px 40px;
+      }
+  
+      .download-buttons {
+        gap: 20px;
+        justify-content: center;
+      }
+    }
   }
-
-  @media (min-width: 481px) and (max-width: 768px) { /* Tablets  */
-      flex-direction: column; /* Las gráficas siguen apiladas */
-      align-items: center; /* Centra los elementos */
-      gap: 15px; /* Espacio moderado entre elementos */
-      padding: 15px; /* Ajusta el padding */
-  }
-
-  @media (min-width: 769px) and (max-width: 1024px) { /* Portátiles */
-      flex-wrap: wrap; /* Las gráficas se ajustan en filas */
-      justify-content: space-evenly; /* Distribución más uniforme */
-      gap: 20px; /* Espacio estándar entre elementos */
-      padding: 20px; /* Padding estándar */
-  }
-
-  @media (min-width: 1025px) { /* Sobremesas */
-      justify-content: space-between; /* Distribución horizontal con espacio */
-      gap: 20px; /* Espacio estándar entre elementos */
-      padding: 20px; /* Padding estándar */
-  }
-}
+  

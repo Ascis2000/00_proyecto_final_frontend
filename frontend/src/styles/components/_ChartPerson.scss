@@ -1,34 +1,33 @@
 .chart-container {
   padding: 20px;
   text-align: center;
+  
 
   .chart-heading {
-    text-align: center; /* Centra el título */
-    margin-bottom: 20px; /* Espaciado inferior */
-    font-size: 1.2rem; /* Ajusta el tamaño del texto */
-    color: #1d1d1b; /* Color neutro */
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    color: #1d1d1b;
   }
+
   .button-container {
     display: flex;
     flex-wrap: wrap;
-    /* Permitir que los botones se ajusten a nuevas filas */
     justify-content: center;
-    /* Centrar los botones horizontalmente */
     gap: 10px;
-    /* Espaciado entre botones */
     margin-bottom: 10px;
 
     .chart-button {
-      flex: 0 1 calc(50% - 10px); /* Cada botón ocupará el 50% del ancho, menos el espacio del gap */
-        box-sizing: border-box; /* Asegura que padding y bordes no rompan el ancho */
-        padding: 10px;
-        font-size: 14px;
-        border-radius: 5px;
-        cursor: pointer;
-        background-color: #44BAC1;
-        color: white;
-        border: none;
-        text-align: center;
+      flex: 0 1 calc(50% - 10px);
+      box-sizing: border-box;
+      padding: 10px;
+      font-size: 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: #44bac1;
+      color: white;
+      border: none;
+      text-align: center;
 
       &:hover {
         background-color: #9C4AA0;
@@ -41,7 +40,7 @@
     display: flex;
     gap: 10px;
     justify-content: center;
-  
+
     .download-button {
       padding: 10px 15px;
       background-color: #44BAC1;
@@ -50,64 +49,121 @@
       border-radius: 5px;
       cursor: pointer;
       transition: background-color 0.3s ease;
-  
+
       &:hover {
         background-color: #9C4AA0;
       }
     }
   }
-/* Móviles */
-@media (max-width: 480px) {
-  .button-container {
-    gap: 10px;
 
-    .chart-button {
+  /* Media Queries */
+  /* Móviles */
+  @media (max-width: 480px) {
+    .button-container {
+      gap: 10px;
+
+      .chart-button {
         flex: 0 1 calc(50% - 10px);
-        font-size: 12px; /* Botones más pequeños en pantallas móviles */
+        font-size: 12px;
         padding: 8px;
+      }
     }
-}
-}
 
-/* Móviles grandes y tablets pequeñas */
-@media (min-width: 481px) and (max-width: 768px) {
-  .button-container {
-    gap: 10px; /* Espacio moderado */
-    flex-wrap: wrap; /* Botones ajustables */
+    .chart-heading {
+      font-size: 1rem;
+    }
 
-    .chart-button {
-      flex: 0 1 calc(50% - 10px); /* 2 botones por fila */
-      font-size: 12px; /* Botones más pequeños */
-      padding: 8px; /* Ajustar padding */
+    .download-buttons .download-button {
+      font-size: 12px;
+      padding: 8px 12px;
     }
   }
-}
 
-/* Tablets grandes y portátiles pequeños */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .button-container {
-    gap: 15px; /* Espaciado ligeramente mayor */
-    flex-wrap: wrap; /* Botones en filas ajustables */
+  /* Móviles grandes y tablets pequeñas */
+  @media (min-width: 481px) and (max-width: 768px) {
+    .button-container {
+      gap: 10px;
 
-    .chart-button {
-      flex: 0 1 calc(33.33% - 15px); /* 3 botones por fila */
-      font-size: 14px; /* Tamaño del texto ligeramente mayor */
-      padding: 12px; /* Padding más grande */
+      .chart-button {
+        flex: 0 1 calc(50% - 10px);
+        font-size: 13px;
+        padding: 10px;
+      }
+    }
+
+    .chart-heading {
+      font-size: 1.1rem;
+    }
+
+    .download-buttons .download-button {
+      font-size: 14px;
+      padding: 10px 15px;
     }
   }
-}
 
-/* Sobremesas y monitores grandes */
-@media (min-width: 1025px) {
-  .button-container {
-    gap: 20px; /* Más espaciado entre botones */
-    flex-wrap: wrap; /* Botones ajustables */
+  /* Tablets grandes y portátiles pequeños */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .button-container {
+      gap: 15px;
 
-    .chart-button {
-      flex: 0 1 calc(25% - 20px); /* 4 botones por fila */
-      font-size: 16px; /* Texto más grande */
-      padding: 15px; /* Padding amplio */
+      .chart-button {
+        flex: 0 1 calc(33.33% - 15px);
+        font-size: 14px;
+        padding: 12px;
+      }
+    }
+
+    .chart-heading {
+      font-size: 1.3rem;
+    }
+
+    .download-buttons .download-button {
+      font-size: 16px;
+      padding: 12px 18px;
     }
   }
-}
+
+  /* Sobremesas y monitores grandes */
+  @media (min-width: 1025px) and (max-width: 3840px) {
+    .button-container {
+      gap: 20px;
+
+      .chart-button {
+        flex: 0 1 calc(25% - 20px);
+        font-size: 16px;
+        padding: 15px;
+      }
+    }
+
+    .chart-heading {
+      font-size: 1.5rem;
+    }
+
+    .download-buttons .download-button {
+      font-size: 18px;
+      padding: 15px 20px;
+    }
+  }
+
+  /* Pantallas muy grandes (4K, 45/75 pulgadas) */
+  @media (min-width: 3841px) {
+    .button-container {
+      gap: 30px;
+
+      .chart-button {
+        flex: 0 1 calc(20% - 30px);
+        font-size: 20px;
+        padding: 20px;
+      }
+    }
+
+    .chart-heading {
+      font-size: 2rem;
+    }
+
+    .download-buttons .download-button {
+      font-size: 20px;
+      padding: 20px 30px;
+    }
+  }
 }

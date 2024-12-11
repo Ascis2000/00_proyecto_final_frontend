@@ -48,7 +48,7 @@
     }
 
     /* Media queries */
-    @media (max-width: 768px) { /* Pantallas pequeñas (móviles) */
+    @media (max-width: 480px) { /* Pantallas pequeñas (móviles) */
         flex-direction: row; /* Mantén los elementos en fila */
         padding: 0.5rem;
 
@@ -66,6 +66,28 @@
                 width: 60px;  /* Ajusta el ancho */
                 font-size: 0.8rem; /* Texto más pequeño */
                 padding: 0.4rem 0.8rem; /* Ajusta el padding */
+            }
+        }
+    }
+
+    @media (min-width: 481px) and (max-width: 768px) { /* Móviles grandes y tablets pequeñas */
+        flex-direction: row;
+        padding: 0.75rem;
+
+        img {
+            height: 55px;
+            margin-left: 0.5rem;
+        }
+
+        .nav-items {
+            flex-direction: row;
+            gap: 0.75rem;
+
+            .button {
+                height: 45px;
+                width: 90px;
+                font-size: 0.85rem;
+                padding: 0.5rem 1rem;
             }
         }
     }
@@ -88,13 +110,39 @@
         }
     }
 
-    @media (min-width: 1025px) { /* Pantallas grandes (desktops) */
+    @media (min-width: 1025px) and (max-width: 3840px) { /* Pantallas grandes (desktops) */
         img {
-            height: 70px;
+            height: 65px;
+            margin-left: 1rem;
         }
 
         .nav-items {
-            gap: 1rem; /* Espacio entre botones */
+            flex-direction: row; /* Botones en fila */
+            gap: 1rem; /* Ajuste del espacio entre botones */
+
+            .button {
+                height: 50px;
+                width: 140px;
+                font-size: 1rem;
+            }
+        }
+    }
+
+    @media (min-width: 3841px) { /* Pantallas muy grandes (45/75 pulgadas) */
+        img {
+            height: 100px; /* Logo más grande */
+            margin-left: 2rem; /* Más margen */
+        }
+
+        .nav-items {
+            gap: 2rem; /* Más espacio entre botones */
+
+            .button {
+                height: 60px; /* Botones más grandes */
+                width: 150px; /* Botones más anchos */
+                font-size: 1.2rem; /* Texto más grande */
+                padding: 0.6rem 1.2rem; /* Mayor padding */
+            }
         }
     }
 }

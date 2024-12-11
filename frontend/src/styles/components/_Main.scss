@@ -122,7 +122,7 @@ h1 {
     }
 }
 
-@media (min-width: 1025px) { /* Pantallas grandes (desktops) */
+@media (min-width: 1025px) and (max-width: 3840px) { /* Pantallas grandes (desktops) */
     main {
         margin-top: 70px; /* Ajusta según la altura del header en desktops */
     }
@@ -131,4 +131,14 @@ h1 {
         padding-top: 80px; /* Estilo estándar para pantallas grandes */
     }
 }
+@media (min-width: 3841px) { /* Pantallas grandes (desktops) */
+    main {
+        margin-top: 70px; /* Ajusta según la altura del header en desktops */
+    }
+
+    .echarts-for-react {
+        padding-top: 80px; /* Estilo estándar para pantallas grandes */
+    }
+}
+
 

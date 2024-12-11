@@ -148,7 +148,7 @@
   }
 
   /* Responsividad para pantallas grandes */
-  @media (min-width: 1025px) {
+  @media (min-width: 1025px) and (max-width: 3840px) {
     .footer__widgets {
       flex-direction: row; /* Columnas en fila */
       justify-content: space-between; /* Separación uniforme */
@@ -164,6 +164,31 @@
       flex-direction: row; /* Créditos y redes sociales en fila */
       justify-content: space-between;
       text-align: left; /* Créditos alineados a la izquierda */
+    }
+  }
+
+  /* Pantallas muy grandes (45/75 pulgadas) */
+  @media (min-width: 3841px) {
+    .footer__widgets {
+      flex-direction: row; /* Columnas en fila */
+      justify-content: space-evenly; /* Mayor separación para pantallas grandes */
+      gap: 30px; /* Espaciado ampliado */
+    }
+
+    .footer__column {
+      flex: 1 1 30%; /* Columnas proporcionadas */
+      text-align: left; /* Alineación izquierda */
+    }
+
+    .footer__colophon {
+      flex-direction: row;
+      justify-content: space-evenly; /* Mayor separación horizontal */
+      font-size: 16px; /* Texto más grande */
+    }
+
+    .footer__credits,
+    .footer__socials {
+      font-size: 16px; /* Tamaño de fuente más grande */
     }
   }
 }
