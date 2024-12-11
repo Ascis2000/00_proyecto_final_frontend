@@ -187,7 +187,6 @@
 // };
 
 // export default ProfesionalForm;
-
 import React, { useState, useEffect } from 'react';
 import './ProfesionalForm.css';
 import { API_URL } from '../../../../config/config.js';
@@ -205,7 +204,7 @@ const ProfesionalForm = ({ actionProvider }) => {
   const especialidadesPorAmbito = {
     "Atencion Primaria": ["Nutrición y Dietética", "Salud Mental Comunitaria"],
     Hospitalaria: ["Medicina"],
-    "Salud publica": ["medicina"],
+    "Salud publica": ["Medicina"],
     Enfermería: ["Enfermería General", "Neonatología", "Salud Pública", "Medicina Preventiva", "Cuidados Intensivos"],
     Medicina: ["Medicina General", "Medicina Familiar y Comunitaria", "Cardiología", "Endocrinología y Nutrición", "Gastroenterología", "Hematología", "Inmunología Clínica", "Infectología (Enfermedades Infecciosas)", "Nefrología", "Neumología", "Neurología", "Oncología Médica", "Reumatología", "Medicina Interna", "Geriatría", "Medicina Paliativa", "Cirugía General", "Cirugía Cardiovascular", "Cirugía Plástica, Estética y Reparadora",
       "Cirugía Torácica", "Cirugía Vascular", "Neurocirugía", "Oftalmología", "Otorrinolaringología", "Traumatología y Ortopedia", "Urología", "Obstetricia y Ginecología", "Pediatría", "Neonatología", "Medicina Fetal", "Medicina Reproductiva", "Radiología", "Medicina Nuclear", "Anatomía Patológica", "Genética Médica", "Bioquímica Clínica", "Medicina de Emergencias", "Medicina Intensiva", "Anestesiología y Reanimación", "Epidemiología",
@@ -230,7 +229,6 @@ const ProfesionalForm = ({ actionProvider }) => {
           especialidad: "",
         };
       }
-
       return {
         ...prevFormData,
         [name]: value,
@@ -245,7 +243,7 @@ const ProfesionalForm = ({ actionProvider }) => {
     }
     setError('');
 
-    console.log("FORMDATA====", formData);
+    console.log("FORMDATA:", formData);
 
     fetch(`${API_URL}api/profesionales/create`, {
       method: 'POST',
@@ -257,63 +255,24 @@ const ProfesionalForm = ({ actionProvider }) => {
       .then((response) => response.json())
       .then((data) => {
         console.log('Profesional creado:', data);
-        actionProvider.handleUserSubmit(formData.tipoFormulario);
+        actionProvider.handleActionSubmit(formData.tipoFormulario, data.profesional_id);
       })
       .catch((error) => console.error('Error:', error));
   };
 
-	const handleSubmit = () => {
-		//validacion 
-		if (
-			!formData.provincia ||
-			!formData.cod_postal ||
-			!formData.ambito ||
-			!formData.especialidad
-		) {
-			setError('Por favor, completa todos los campos antes de enviar.');
-			return;
-		}
-		setError('');
-
-		console.log("FORMDATA====", formData)
-
-		fetch(`${API_URL}api/profesionales/create`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(formData),
-		})
-			.then((response) => response.json())
-			.then((data) => {
-				console.log('Profesional creado:', data);
-				console.log("Profesional=", formData.tipoFormulario)
-				actionProvider.handleActionSubmit(formData.tipoFormulario, data.profesional_id);
-			})
-			.catch((error) => console.error('Error:', error));
-	};
-
-	return (
-		<div >
-			<h3>Por favor, ingresa tus datos:</h3>
-
-			{/* Mensaje de error */}
-			{error && <p style={{ color: 'red' }}>{error}</p>}
-			<div className="form-container">
-				{/* Selector para el País */}
-				<label htmlFor="provincia">Provincia:</label>
-				<select
-					name="provincia"
-					value={formData.provincia}
-					onChange={handleChange}
-				>
-
   return (
     <div>
       <h3>Por favor, ingresa tus datos:</h3>
+
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+
       <div className="form-container">
         <label htmlFor="provincia">Provincia:</label>
-        <select name="provincia" value={formData.provincia} onChange={handleChange}>
+        <select
+          name="provincia"
+          value={formData.provincia}
+          onChange={handleChange}
+        >
           <option value="" disabled>Selecciona tu provincia</option>
           <option value="Álava">Álava</option>
           <option value="Albacete">Albacete</option>
@@ -368,7 +327,7 @@ const ProfesionalForm = ({ actionProvider }) => {
           <option value="Zaragoza">Zaragoza</option>
         </select>
 
-        <label htmlFor="cod_postal">Codigo Postal:</label>
+        <label htmlFor="cod_postal">Código Postal:</label>
         <input
           type="text"
           name="cod_postal"
@@ -376,8 +335,12 @@ const ProfesionalForm = ({ actionProvider }) => {
           onChange={handleChange}
         />
 
-        <label htmlFor="ambito">Ambito:</label>
-        <select name="ambito" value={formData.ambito} onChange={handleChange}>
+        <label htmlFor="ambito">Ámbito:</label>
+        <select
+          name="ambito"
+          value={formData.ambito}
+          onChange={handleChange}
+        >
           <option value="" disabled>Selecciona tu ámbito</option>
           {Object.keys(especialidadesPorAmbito).map((ambito) => (
             <option key={ambito} value={ambito}>
@@ -402,7 +365,6 @@ const ProfesionalForm = ({ actionProvider }) => {
         </select>
 
         <button onClick={handleSubmit}>Enviar</button>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
       </div>
     </div>
   );
