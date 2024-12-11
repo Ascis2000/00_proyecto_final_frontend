@@ -1,21 +1,22 @@
 
-import React from 'react';
+import React, { useState } from "react";
 import { API_URL } from '../../../config/config.js';
 import { createChatBotMessage, createClientMessage } from 'react-chatbot-kit';
+import { realizarInserccion } from '../../../servicios/interacciones.services.js';
+
+let perfil = 0;
 
 const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 
-	const handleHello = () => {
-		const messageWithProperties = createChatBotMessage('Hola. Encantad@ de conocerteeee', {
-			payload: {},
-			delay: 500,
-		});
+	const [tipoPerfil, setTipoPerfil] = useState("");
 
-		setState((prev) => ({
-			...prev,
-			messages: [...prev.messages, messageWithProperties],
-		}));
-	};
+	// limpia todos los mensajes actuales
+	const clearChat = () => {
+        setState((prevState) => ({
+            ...prevState,
+            messages: []
+        }));
+    };
 
 	const handleStartOptions = () => {
 		const botMessage = createChatBotMessage("Selecciona una opción:", {
@@ -28,17 +29,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 		}));
 	};
 
-	const handleGetUsers = () => {
-		const botMessage = createChatBotMessage("Aquí están los usuarios:", {
-			widget: 'getUsers',
-		});
-
-		setState((prev) => ({
-			...prev,
-			messages: [...prev.messages, botMessage],
-		}));
-	};
-
+	// formulario para usuarios
 	const handleUserForm = () => {
 		const botMessage = createChatBotMessage("Formulario para usuarios:", {
 			widget: 'showUserForm',
@@ -50,26 +41,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 		}));
 	};
 
-	const handleUserSubmit = (tipoFormulario) => {
-
-		const botMessage = createChatBotMessage("Gracias por enviar el formulario de usuario.", {
-			widget: 'formConfirmationWidget',
-		});
-
-		setState((prev) => ({
-			...prev,
-			messages: [...prev.messages, botMessage],
-		}));
-
-		if (tipoFormulario === "usuario") {
-			handleOptionSelection(1, "", false);
-		} else if (tipoFormulario === "profesional") {
-			handleOptionSelection(6, "", false);
-		}
-
-		console.log("estoy en handleUserSubmit. TipoFormulario", tipoFormulario)
-	};
-
+	// formulario para profesionales
 	const handleProfesionalForm = () => {
 		const botMessage = createChatBotMessage("Formulario para profesionales:", {
 			widget: 'showProfesionalForm', // Cambia el widget para que muestre el formulario de profesionales
@@ -81,8 +53,12 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 		}));
 	};
 
-	const handleProfesionalSubmit = () => {
-		const botMessage = createChatBotMessage("Gracias por enviar el formulario de profesional.", {
+	// Recibimos los datos enviados por
+	// el formulario de usuarios o profesionales
+	const handleActionSubmit = (tipoFormulario, idPerfil) => {
+		clearChat();
+
+		const botMessage = createChatBotMessage("Gracias por enviar el formulario de " + tipoFormulario, {
 			widget: 'formConfirmationWidget',
 		});
 
@@ -90,23 +66,47 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 			...prev,
 			messages: [...prev.messages, botMessage],
 		}));
+
+		if (tipoFormulario === "usuario") {
+			handleOptionSelection(1, "", false, idPerfil);
+		} else if (tipoFormulario === "profesional") {
+			handleOptionSelection(6, "", false, idPerfil);
+		}
 	};
 
 	let currentQuestionId = 1; // Inicializamos el ID de la primera pregunta
-	const handleOptionSelection = async (option, texto, fin) => {
+
+	const handleOptionSelection = async (option, texto, fin, idPerfil, idPregunta, idRespuesta) => {
 
 		if (option === "profesional") {
 			// Mostrar el formulario de profesional al pulsar el botón correspondiente
 			handleProfesionalForm();
+			setTipoPerfil("profesional");
 			return;
+
 		} else if (option === "usuario") {
 			// Mostrar el formulario de usuario al pulsar el botón correspondiente
 			handleUserForm();
+			setTipoPerfil("usuario");
 			return;
+
 		} else if (option) {
+			perfil = idPerfil;
+			console.log("EN OPTION perfil es=", perfil)
 			currentQuestionId = option; // Asignar el valor de `nextQuestion`
 		} else {
 			throw new Error("No se encontró un valor válido para currentQuestionId");
+		}
+
+		// si existe idPregunta
+		// insertamos todas las pulsaciones en la tabla 'interacciones'
+		if(idPregunta){
+			try {
+				const nuevaInserccion = await realizarInserccion(tipoPerfil, idPerfil, idPregunta, idRespuesta);
+				console.log("Interacción realizada correctamente:", nuevaInserccion);
+			} catch (error) {
+				console.error("Error al realizar la interacción:", error.message);
+			}
 		}
 
 		// Estructura jerárquica de opciones dinamicas
@@ -119,7 +119,8 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 			}
 		};
 
-		// mensaje final si ya no hay mas preguntas
+		// USUARIO 
+		// mensaje final. NO hay mas preguntas
 		if(fin == true){
 
 			// Mostrar mensaje del usuario reflejando la selección
@@ -140,14 +141,27 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 				messages: [...prevState.messages, finalMessage],
 			}));
 
-			const ayudaMessage = createChatBotMessage("¿Quieres hacer alguna consulta más?");
+			const botMessageFinalOptions = createChatBotMessage("¿Deseas realizar alguna consulta más?", {
+				widget: "wg_finalOptionsButtons",
+				payload: { 
+					options: 
+					{
+						tPerfil: tipoPerfil,
+						iPerfil: perfil
+					} 
+				},
+				delay: 500,
+			});
 			setState((prevState) => ({
 				...prevState,
-				messages: [...prevState.messages, ayudaMessage],
+				messages: [...prevState.messages, botMessageFinalOptions],
 			}));
 
 			return;
 		}
+
+		// USUARIO 
+		// mensaje informativo sonre lo que ha pulsado el usuario
 		if(texto !== ""){
 			// Mostrar mensaje del usuario reflejando la selección
 			const userMessage = createClientMessage(`He seleccionado:`, {
@@ -155,7 +169,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 				payload: { customHTML: texto }, // Aquí se pasa el payload al widget
 				delay: 500,
 			});
-			console.log("userMessage", userMessage); // Agrega el mensaje al flujo de chat
+			//console.log("userMessage", userMessage); // Agrega el mensaje al flujo de chat
 
 			setState((prevState) => ({
 				...prevState,
@@ -165,7 +179,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 
 		async function obtenerRespuestasPorPregunta(option) {
 			try {
-				console.log("id_preguntaaaa=", option)
+				//console.log("id_pregunta=", option)
 				const response = await fetch(`${API_URL}api/preguntas/pr/${option}`);
 				if (!response.ok) {
 					throw new Error("Error al obtener las respuestas");
@@ -173,13 +187,16 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 				const respuestas = await response.json();
 
 				currentQuestionId++
-				console.log("RESPUESSSTAS", respuestas)
+				
 				return respuestas.map((res) => ({
+					id_pregunta: option,
 					pregunta: res.pregunta,
-					id: res.respuesta_id,
+					nextQuestion: currentQuestionId++,
+					tPerfil: tipoPerfil,
+					idPerfil: perfil,
+					id_respuesta: res.respuesta_id,
 					texto: res.respuesta,
 					fin: res.fin,
-					nextQuestion: currentQuestionId++
 				}));
 			} catch (error) {
 				console.error("Hubo un error:", error);
@@ -189,8 +206,8 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 
 		// Actualizamos las respuestas dinámicas según la pregunta actual
 		const nuevosDatos = await obtenerRespuestasPorPregunta(option);
-
-		console.log("nuevosDatos", nuevosDatos)
+		//console.log("nuevosDatos", nuevosDatos);
+		
 		if (nuevosDatos.length > 0) {
 			optionsMap.datos.pregunta = nuevosDatos[0].pregunta;
 			optionsMap.datos.respuestas = nuevosDatos;
@@ -225,16 +242,17 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 			{React.Children.map(children, (child) => {
 				return React.cloneElement(child, {
 					actions: {
-						handleStartOptions,
-						handleHello,
-						handleGetUsers,
-						handleUserForm,
+						clearChat, // limpia los mensajes actuales del chat
+
+						handleStartOptions, // muestra los botones de usuario y profesional
+
+						handleUserForm, // muestra el formulario de usuarios
+						handleProfesionalForm, // muestra el formulario de profesionales
+
+						handleActionSubmit, // recibe los datos de los formularios
+
+						// funcion principal para la gestion de los datos
 						handleOptionSelection,
-						handleProfesionalForm,
-						handleProfesionalSubmit,
-						handleUserSubmit
-
-
 					},
 				});
 			})}

@@ -262,6 +262,52 @@ const ProfesionalForm = ({ actionProvider }) => {
       .catch((error) => console.error('Error:', error));
   };
 
+	const handleSubmit = () => {
+		//validacion 
+		if (
+			!formData.provincia ||
+			!formData.cod_postal ||
+			!formData.ambito ||
+			!formData.especialidad
+		) {
+			setError('Por favor, completa todos los campos antes de enviar.');
+			return;
+		}
+		setError('');
+
+		console.log("FORMDATA====", formData)
+
+		fetch(`${API_URL}api/profesionales/create`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(formData),
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				console.log('Profesional creado:', data);
+				console.log("Profesional=", formData.tipoFormulario)
+				actionProvider.handleActionSubmit(formData.tipoFormulario, data.profesional_id);
+			})
+			.catch((error) => console.error('Error:', error));
+	};
+
+	return (
+		<div >
+			<h3>Por favor, ingresa tus datos:</h3>
+
+			{/* Mensaje de error */}
+			{error && <p style={{ color: 'red' }}>{error}</p>}
+			<div className="form-container">
+				{/* Selector para el País */}
+				<label htmlFor="provincia">Provincia:</label>
+				<select
+					name="provincia"
+					value={formData.provincia}
+					onChange={handleChange}
+				>
+
   return (
     <div>
       <h3>Por favor, ingresa tus datos:</h3>
