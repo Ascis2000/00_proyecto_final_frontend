@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactECharts from 'echarts-for-react';
-//
+import '../../../../../../styles/components/_ChartPie.scss';
+
 
 const ChartPie = ({ title, data }) => {
   const colors = ['#44BAC1', '#9C4AA0', '#FFB024', '#F45540', '#A5165B', '#E2007E', '#1D1D1B','#71226E', '#36C49E'];
@@ -10,7 +11,7 @@ const ChartPie = ({ title, data }) => {
       trigger: 'item',
     },
     legend: {
-      top: '5%',
+      top: '3%',
       left: 'center',
     },
     color: colors, 
@@ -18,8 +19,8 @@ const ChartPie = ({ title, data }) => {
       {
         name: title,
         type: 'pie',
-        radius: ['40%', '70%'],
-        center: ['50%', '70%'],
+        radius: ['35%', '80%'],
+        center: ['50%', '60%'],
         data: data.map((item) => ({ value: item.count, name: item.label })),
       },
     ],

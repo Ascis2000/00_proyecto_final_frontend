@@ -41,7 +41,7 @@
   /* Tablets grandes y portátiles pequeños */
   @media (min-width: 769px) and (max-width: 1024px) {
     .chart-pie {
-      max-width: 80%; /* Gráfica más compacta */
+      max-width: 10%; /* Gráfica más compacta */
       margin: 0 auto; /* Centrar la gráfica */
     }
 
@@ -53,7 +53,7 @@
   /* Sobremesas y monitores grandes */
   @media (min-width: 1025px) {
     .chart-pie {
-      max-width: 600px; /* Gráfica más grande en pantallas amplias */
+      max-width: 900px; /* Gráfica más grande en pantallas amplias */
       margin: 0 auto; /* Centrar la gráfica */
     }
 
