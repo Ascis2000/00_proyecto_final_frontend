@@ -21,7 +21,7 @@ const LoginForm = ({ onClose, onLogin }) => {
     try {
       console.log("Iniciando solicitud a la API...");
       const response = await axios.post(
-        `${API_URL}/api/auth/login`,
+        `${API_URL}api/auth/login`,
         {
           email: formData.email,
           password: formData.password,
