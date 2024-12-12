@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import ChatbotKit from "react-chatbot-kit";
-import ProtectedRoute from "../ProtectedRoute"; // Importar el componente de protección de rutas
+import ProtectedRoute from "../ProtectedRoute";
 
 import Home from "./Home";
 import "../../styles/components/_Main.scss";
@@ -52,6 +52,9 @@ function Main() {
         {/* Rutas públicas */}
         <Route path="/" element={<Home />} />
         <Route path="/chatbot" element={<ChatBot />} />
+
+        {/* Ruta pública para /admin */}
+        <Route path="/admin" element={<Home />} />
 
         {/* Rutas protegidas */}
         <Route
