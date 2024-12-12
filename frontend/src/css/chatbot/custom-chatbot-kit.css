@@ -154,7 +154,9 @@ div.react-chatbot-kit-user-chat-message-arrow {
 
 div.react-chatbot-kit-chat-bot-message {
     width: 70%;
+
     right: 150px;
+
 }
 
 div.react-chatbot-kit-chat-bot-message-arrow {}
@@ -193,7 +195,7 @@ div.react-chatbot-kit-error-docs {}
 .react-chatbot-kit-chat-message-container .boxPreguntas button {
     width: 200px;
     padding: 10px;
-    background-color: rgb(198, 152, 206);
+    background-color: #e39dca;
     color: rgb(135, 50, 135);
     border: none;
     border-radius: 5px;
@@ -204,8 +206,8 @@ div.react-chatbot-kit-error-docs {}
 }
 
 .react-chatbot-kit-chat-message-container .boxPreguntas button:hover {
-    color: rgb(95, 41, 95);
-    background-color: rgb(184, 125, 195);
+    color: rgb(252, 250, 252);
+    background-color: #D757A7;
 }
 
 .react-chatbot-kit-user-chat-message-container {
