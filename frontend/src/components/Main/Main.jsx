@@ -1,32 +1,29 @@
+import React, { useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import ChatbotKit from "react-chatbot-kit";
+import ProtectedRoute from "../ProtectedRoute"; // Importar el componente de protección de rutas
 
-import React, { useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
-import ChatbotKit from 'react-chatbot-kit'
+import Home from "./Home";
+import "../../styles/components/_Main.scss";
+import ChartDashboard from "./AdminDashboard";
+import ChatBot from "./ChatBot";
+import ModChatbot from "./ModChatbot";
+import ProbandoApi from "./ProbandoApi";
+import AdminProfile from "./AdminProfile";
 
+import config from "../../elements/Bot/config/config.jsx";
+import MessageParser from "../../elements/Bot/MessageParser/MessageParser.jsx";
+import ActionProvider from "../../elements/Bot/ActionProvider/ActionProvider.jsx";
 
-import Home from './Home';
-import '../../styles/components/_Main.scss';
-import ChartDashboard from './AdminDashboard';
-import ChatBot from './ChatBot';
-import ModChatbot from './ModChatbot';
-import ProbandoApi from './ProbandoApi';
-import AdminProfile from './AdminProfile';
-
-import config from '../../elements/Bot/config/config.jsx';
-import MessageParser from '../../elements/Bot/MessageParser/MessageParser.jsx';
-import ActionProvider from '../../elements/Bot/ActionProvider/ActionProvider.jsx';
-
-import 'react-chatbot-kit/build/main.css'
-import '../../css/chatbot/custom-chatbot-kit.css';
-
-//import Error404 from './Error404'; 
+import "react-chatbot-kit/build/main.css";
+import "../../css/chatbot/custom-chatbot-kit.css";
 
 function Main() {
-	const [showChatbot, setShowChatbot] = useState(false);
-	return (
-		<main > {/* className="boxMain" */}
-			     {/* Botón flotante que aparece cuando el chatbot está oculto */}
-				{!showChatbot && (
+  const [showChatbot, setShowChatbot] = useState(false);
+
+  return (
+    <main>
+      {!showChatbot && (
         <button
           onClick={() => setShowChatbot(!showChatbot)}
           className="chatbot-toggle-button"
@@ -35,14 +32,13 @@ function Main() {
         </button>
       )}
 
-      {/* Contenedor del chatbot */}
       {showChatbot && (
         <div className="chatbot-container">
           <button
             onClick={() => setShowChatbot(false)}
             className="chatbot-close-button"
           >
-          <i className="fas fa-times" ></i>
+            <i className="fas fa-times"></i>
           </button>
           <ChatbotKit
             config={config}
@@ -51,23 +47,29 @@ function Main() {
           />
         </div>
       )}
-			<Routes>
-				<Route path="/" element={<Home />} />
-            <Route path="/admin" element={<AdminProfile />} />
-            <Route path="/admin/charts" element={<ChartDashboard />} />
-            <Route path="/admin/modchatbot" element={<ModChatbot />} />
-            <Route path="/admin/probandoapi" element={<ProbandoApi />} />
-				<Route path="/chatbot" element={<ChatBot />} />
-				{/* <Route path="/chatbotkit" element={<ChatbotKit
-					config={config}
-					messageParser={MessageParser}
-					actionProvider={ActionProvider}
-				/>} /> */}
-				{/* <Route path="*" element={<Error404 />} />  */}
 
-			</Routes>
-		</main>
-	);
+      <Routes>
+        {/* Rutas públicas */}
+        <Route path="/" element={<Home />} />
+        <Route path="/chatbot" element={<ChatBot />} />
+
+        {/* Rutas protegidas */}
+        <Route
+          path="/admin/*"
+          element={
+            <ProtectedRoute>
+              <Routes>
+                <Route path="profile" element={<AdminProfile />} />
+                <Route path="charts" element={<ChartDashboard />} />
+                <Route path="modchatbot" element={<ModChatbot />} />
+                <Route path="probandoapi" element={<ProbandoApi />} />
+              </Routes>
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </main>
+  );
 }
 
 export default Main;
