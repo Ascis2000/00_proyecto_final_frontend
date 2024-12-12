@@ -9,6 +9,10 @@ import ShowBotHTML from '../../../components/Main/ShowBotHTML/ShowBotHTML';
 
 const botName = 'EVE';
 
+function eliminarTextoURL(cadena) {
+    return cadena.replace(/https?:\/\/\S+/g, '').trim();
+}
+
 const headerWidget = () => React.createElement(
 	'div',
 	{
@@ -67,7 +71,7 @@ const dynamicOptionsWidget = (props) => {
 						option.id_respuesta
 					)} // Manejar selección de opción
 				>
-					{option.texto}
+					{eliminarTextoURL(option.texto)}
 					{/* Pregunta={option.nextQuestion}
 					Texto={option.texto}
 					FIN={option.fin ? "Sí" : "No"}<br></br>
