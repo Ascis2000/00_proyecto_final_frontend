@@ -1,20 +1,19 @@
 // Importa las variables y mixins primero
 // @import '../styles/utils/variables.scss';
-@import '../styles/variables/variables.scss';
+@use '../styles/variables/variables.scss';
 // @import '../styles/utils/mixins.scss';
 
 // Luego, importa estilos globales o generales
-@import './views/App';
+@use './views/App';
 
 // Finalmente, importa los estilos de los componentes
-@import './components/_Main.scss';
-@import './components/_Header.scss';
-@import './components/_Footer.scss';
-@import "./components/_Home.scss";
-@import "./components/_AdminDashboard.scss";
-@import "./components/ChartPerson.scss";
-@import "./components/ChartPie.scss";
-@import './components/_Home.scss';
+@use './components/_Main.scss';
+@use './components/_Header.scss';
+@use './components/_Footer.scss';
+@use "./components/_Home.scss";
+@use "./components/_AdminDashboard.scss";
+@use "./components/ChartPerson.scss";
+@use "./components/ChartPie.scss";
 
 
 
