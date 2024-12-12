@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../../styles/components/_Header.scss";
-import LoginForm from "./LoginForm";
 import axios from "axios";
 import Cookies from 'js-cookie';
 import jwt_decode from "jwt-decode"; // Importar jwt_decode para decodificar el token
@@ -13,7 +12,6 @@ const Header = () => {
 
   const [isAuthenticated, setIsAuthenticated] = useState(!!token);
   const [userRole, setUserRole] = useState(null);
-  const [showLogin, setShowLogin] = useState(false);
 
   // Decodificar el token y establecer el rol del usuario
   useEffect(() => {
@@ -30,20 +28,6 @@ const Header = () => {
     }
   }, [token]);
 
-  const handleLogin = () => {
-    const token = Cookies.get('token');
-    if (token) {
-      try {
-        const decodedToken = jwt_decode(token);
-        setIsAuthenticated(true);
-        setUserRole(decodedToken.rol); // Actualizar rol tras iniciar sesión
-        window.location.reload(); // Recargar la página después del login
-      } catch (err) {
-        console.error("Error al decodificar el token durante login:", err);
-      }
-    }
-  };
-
   const handleLogout = async () => {
     try {
       await axios.get("http://localhost:3000/api/auth/logout");
@@ -57,6 +41,7 @@ const Header = () => {
   };
 
   const isAdminRoute = location.pathname.startsWith("/admin"); // Verificar si la ruta actual empieza con /admin
+  const isHomeRoute = location.pathname === "/"; // Verificar si estamos en la página principal (ruta /)
 
   return (
     <>
@@ -66,29 +51,20 @@ const Header = () => {
           <button className="button">
             <Link to="/" className="link">Home</Link>
           </button>
-          {/* Mostrar contenido solo si es una ruta de administrador */}
-          {isAdminRoute && (
-            <>
-              {isAuthenticated && userRole === "admin" ? (
-                <>
-                  <button className="button">
-                    <Link to="/admin/profile" className="link">Dashboard</Link>
-                  </button>
-                  <button onClick={handleLogout} className="button">Logout</button>
-                </>
-              ) : (
-                <button onClick={() => setShowLogin(true)} className="button">
-                  Login
-                </button>
-              )}
-            </>
+
+          {/* Mostrar el botón de Dashboard solo si no estamos en la ruta / */}
+          {!isHomeRoute && (
+            <button className="button">
+              <Link to="/admin/profile" className="link">Dashboard</Link>
+            </button>
+          )}
+
+          {/* Mostrar Logout solo si estamos autenticados */}
+          {isAuthenticated && (
+            <button onClick={handleLogout} className="button">Logout</button>
           )}
         </div>
       </header>
-      {/* Mostrar LoginForm si showLogin es true */}
-      {showLogin && (
-        <LoginForm onClose={() => setShowLogin(false)} onLogin={handleLogin} />
-      )}
     </>
   );
 };
