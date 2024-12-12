@@ -5,6 +5,7 @@ import ProfesionalForm from '../../../components/Main/ChatBot/ProfesionalForm';
 import UserForm from '../../../components/Main/ChatBot/UserForm';
 import StartOptions from '../../../components/Main/StartOptions/StartOptions';
 import ShowHTML from '../../../components/Main/ShowHTML/ShowHTML';
+import ShowBotHTML from '../../../components/Main/ShowBotHTML/ShowBotHTML';
 
 const botName = 'EVE';
 
@@ -111,8 +112,7 @@ const config = {
 		createChatBotMessage(`Hola! Mi nombre es ${botName}.
 			Bienvenide al Chatbot de Información sobre vih de FELGTBI+. 
 			`, {
-			// Primer mensaje del bot
-			delay: 1000, // Tiempo para que el mensaje aparezca con el indicador de "escribiendo"
+			delay: 1000, 
 		}),
 		createChatBotMessage("Estoy aquí para brindarte información confiable y orientación de manera confidencial.", {}),
 		createChatBotMessage("¿Cómo puedo ayudarte mejor? Por favor selecciona una opción:", {
@@ -128,7 +128,7 @@ const config = {
 		/* createChatBotMessage('Por favor, ingresa tus datos a continuación:', {
 			widget: 'getUsers', // Este es el nombre del widget
 		}),
-		createChatBotMessage('Por favor, este texto no sale:', {
+		createChatBotMessage('Por favor, rellene el formulario:', {
 			widget: 'showUserForm', // Este es el nombre del widget
 		}), */
 	],
@@ -171,6 +171,10 @@ const config = {
 		{
 			widgetName: "showHTML",
 			widgetFunc: (props) => <ShowHTML {...props} />,
+		},
+		{
+			widgetName: "wg_showBotHTML",
+			widgetFunc: (props) => <ShowBotHTML {...props} />,
 		},
 		{
 			widgetName: "wg_finalOptionsButtons",

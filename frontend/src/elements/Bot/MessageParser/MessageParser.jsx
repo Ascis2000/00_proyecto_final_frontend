@@ -6,12 +6,12 @@ const MessageParser = ({ children, actions }) => {
 		// Si el mensaje incluye 'hola', maneja la respuesta
 		if (message.includes('hola')) {
 			console.log('mensaje: hola');
-			actions.handleHello();
+			actions.handleSaludo();
 		}
 
 		// Si el mensaje incluye 'dog', maneja la respuesta
-		if (message.includes('dog')) {
-			actions.handleDog();
+		if (message.includes('Tengo miedo de haber contraído vih')) {
+			actions.handleModelAnswer();
 		}
 	};
 

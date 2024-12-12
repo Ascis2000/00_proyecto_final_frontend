@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { API_URL } from '../../../config/config.js';
 import { createChatBotMessage, createClientMessage } from 'react-chatbot-kit';
 import { realizarInserccion } from '../../../servicios/interacciones.services.js';
+import { getModelAnswer } from '../../../servicios/modelAnswer.services.js';
 
 let perfil = 0;
 
@@ -12,11 +13,30 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 
 	// limpia todos los mensajes actuales
 	const clearChat = () => {
-        setState((prevState) => ({
-            ...prevState,
-            messages: []
-        }));
-    };
+		setState((prevState) => ({
+			...prevState,
+			messages: []
+		}));
+	};
+
+	const handleSaludo = () => {
+		const botMessageSaludo = createChatBotMessage('Hola. Encantada de atenderte');
+
+		setState((prev) => ({
+			...prev,
+			messages: [...prev.messages, botMessageSaludo],
+		}));
+	};
+
+	const addMessageToBot = (messageContent) => {
+		const newMessage = createChatBotMessage(messageContent);
+
+		// Añadir el mensaje a la lista de mensajes del chatbot
+		setState(prevState => ({
+			...prevState,
+			messages: [...prevState.messages, newMessage]
+		}));
+	}
 
 	const handleStartOptions = () => {
 		const botMessage = createChatBotMessage("Selecciona una opción:", {
@@ -100,7 +120,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 
 		// si existe idPregunta
 		// insertamos todas las pulsaciones en la tabla 'interacciones'
-		if(idPregunta){
+		if (idPregunta) {
 			try {
 				const nuevaInserccion = await realizarInserccion(tipoPerfil, idPerfil, idPregunta, idRespuesta);
 				console.log("Interacción realizada correctamente:", nuevaInserccion);
@@ -121,7 +141,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 
 		// USUARIO 
 		// mensaje final. NO hay mas preguntas
-		if(fin == true){
+		if (fin == true) {
 
 			// Mostrar mensaje del usuario reflejando la selección
 			const userMessage = createClientMessage(`He seleccionado:`, {
@@ -135,34 +155,50 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 				messages: [...prevState.messages, userMessage],
 			}));
 
-			const finalMessage = createChatBotMessage("Fin de la información.");
-			setState((prevState) => ({
-				...prevState,
-				messages: [...prevState.messages, finalMessage],
-			}));
+			// Ejecutar un fetch a modelAnswer.services
+			try {
+				const respuesta = await getModelAnswer(tipoPerfil);
+				//console.log("Respuesta ModelAnswer obtenida correctamente:", respuesta);
 
-			const botMessageFinalOptions = createChatBotMessage("¿Deseas realizar alguna consulta más?", {
-				widget: "wg_finalOptionsButtons",
-				payload: { 
-					options: 
-					{
-						tPerfil: tipoPerfil,
-						iPerfil: perfil
-					} 
-				},
-				delay: 500,
-			});
-			setState((prevState) => ({
-				...prevState,
-				messages: [...prevState.messages, botMessageFinalOptions],
-			}));
+				const finalMessageModel = createChatBotMessage(respuesta);
+				setState((prevState) => ({
+					...prevState,
+					messages: [...prevState.messages, finalMessageModel],
+				}));
 
+				// Una vez obtenido el fetch, mostrar el mensaje final
+				const finalMessage = createChatBotMessage("Gracias por tu atención.");
+				setState((prevState) => ({
+					...prevState,
+					messages: [...prevState.messages, finalMessage],
+				}));
+
+				// Mostrar opciones finales al usuario
+				const botMessageFinalOptions = createChatBotMessage("¿Deseas realizar alguna consulta más?", {
+					widget: "wg_finalOptionsButtons",
+					payload: {
+						options: {
+							tPerfil: tipoPerfil,
+							iPerfil: perfil
+						}
+					},
+					delay: 500,
+				});
+				setState((prevState) => ({
+					...prevState,
+					messages: [...prevState.messages, botMessageFinalOptions],
+				}));
+
+			} catch (error) {
+				console.error("Error al obtener la respuesta del modelAnswer:", error.message);
+			}
 			return;
 		}
 
+
 		// USUARIO 
 		// mensaje informativo sonre lo que ha pulsado el usuario
-		if(texto !== ""){
+		if (texto !== "") {
 			// Mostrar mensaje del usuario reflejando la selección
 			const userMessage = createClientMessage(`He seleccionado:`, {
 				widget: 'showHTML',
@@ -187,7 +223,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 				const respuestas = await response.json();
 
 				currentQuestionId++
-				
+
 				return respuestas.map((res) => ({
 					id_pregunta: option,
 					pregunta: res.pregunta,
@@ -207,7 +243,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 		// Actualizamos las respuestas dinámicas según la pregunta actual
 		const nuevosDatos = await obtenerRespuestasPorPregunta(option);
 		//console.log("nuevosDatos", nuevosDatos);
-		
+
 		if (nuevosDatos.length > 0) {
 			optionsMap.datos.pregunta = nuevosDatos[0].pregunta;
 			optionsMap.datos.respuestas = nuevosDatos;
@@ -243,6 +279,8 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 				return React.cloneElement(child, {
 					actions: {
 						clearChat, // limpia los mensajes actuales del chat
+
+						handleSaludo,
 
 						handleStartOptions, // muestra los botones de usuario y profesional
 
