@@ -8,7 +8,7 @@ div.react-chatbot-kit-chat-container {
     right: 70px;
     bottom: 240px;
     position: fixed;
-    z-index:1000;
+    z-index: 1000;
 }
 
 div.react-chatbot-kit-chat-inner-container {
@@ -21,7 +21,7 @@ div.react-chatbot-kit-chat-inner-container {
     height: 100%;
     overflow-y: auto;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    
+
 }
 
 div.react-chatbot-kit-chat-inner-container .header {
@@ -30,14 +30,12 @@ div.react-chatbot-kit-chat-inner-container .header {
     background-color: rgb(188, 75, 201);
     border-radius: 3px 3px 1px 1px;
 
-  font-weight:bold;
+    font-weight: bold;
 }
 
 div.react-chatbot-kit-chat-header {}
 
-div.react-chatbot-kit-chat-input-container {
-    
-}
+div.react-chatbot-kit-chat-input-container {}
 
 
 
@@ -49,29 +47,30 @@ div.react-chatbot-kit-chat-message-container {
 }
 
 .react-chatbot-kit-chat-input-container {
-    bottom: 0; 
-    left: 0; 
-    width: 100%; 
-    background-color: white; 
-    padding: 0px; 
-    z-index: 1001; 
-    display: flex; 
-    align-items: center; 
-    gap: 10px; 
-    display: none ;
-   
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    padding: 0px;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    display: none;
+
 }
+
 input.react-chatbot-kit-chat-input {
-    flex: 1; 
-    border: 1px solid #ddd; 
+    flex: 1;
+    border: 1px solid #ddd;
     border-radius: 5px;
-    padding: 10px; 
-    font-size: 14px; 
-    color: #333; 
-    background-color: white; 
-    outline: none; 
+    padding: 10px;
+    font-size: 14px;
+    color: #333;
+    background-color: white;
+    outline: none;
     margin-left: 4px;
-    display: none ;
+    display: none;
 }
 
 form.react-chatbot-kit-chat-input-form {
@@ -79,20 +78,20 @@ form.react-chatbot-kit-chat-input-form {
     margin-bottom: -20px;
 }
 
-div.react-chatbot-kit-chat-input::placeholder {
-
-}
+div.react-chatbot-kit-chat-input::placeholder {}
 
 button.react-chatbot-kit-chat-btn-send {
-    background-color: #7198ec; 
-    border-radius: 5px; 
-    padding: 10px 10px; 
+    background-color: #7198ec;
+    border-radius: 5px;
+    padding: 10px 10px;
     margin-right: -3px;
     transition: background-color 0.3s ease;
 
 }
+
 button.react-chatbot-kit-chat-btn-send:hover {
-    background-color: hsl(223, 89%, 56%); /* Cambia este color al que desees */
+    background-color: hsl(223, 89%, 56%);
+    /* Cambia este color al que desees */
 }
 
 div.react-chatbot-kit-chat-btn-send-icon {}
@@ -124,27 +123,27 @@ div .react-chatbot-kit-chat-bot-message-container .react-chatbot-kit-chat-bot-av
     position: relative;
 }
 
-p.react-chatbot-kit-chat-bot-avatar-letter::before  {
-        content: "";
-        display: block;
-        width: 40px; 
-        height: 40px;
-        border-radius: 50%; 
-        background-image: url("../../../public/EVE.png"); 
-        background-size: cover; 
-        background-position: center; 
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
+p.react-chatbot-kit-chat-bot-avatar-letter::before {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-image: url("../../../public/EVE.png");
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
 
 div.react-chatbot-kit-user-chat-message {
     border: 2px solid rgb(162, 193, 224);
     background-color: #D0F7FD;
     margin-bottom: 10px;
-    
+
 }
 
 div.react-chatbot-kit-user-chat-message-arrow {
@@ -155,7 +154,7 @@ div.react-chatbot-kit-user-chat-message-arrow {
 
 div.react-chatbot-kit-chat-bot-message {
     width: 70%;
-    right:150px;
+    right: 150px;
 }
 
 div.react-chatbot-kit-chat-bot-message-arrow {}
@@ -227,51 +226,57 @@ div.react-chatbot-kit-error-docs {}
 .botones {
     display: flex;
     justify-content: center;
-    gap: 15px; 
-    margin-top: 10px; 
+    gap: 15px;
+    margin-top: 10px;
     margin-bottom: 10px;
-  }
-  
-  .botones button {
-    background-color: #f393c8c2; 
-    color: white; 
+}
+
+.botones button {
+    background-color: #f393c8c2;
+    color: white;
     font-size: 13px;
-    padding: 11px 16px; 
-    border: none; 
-    border-radius: 30px; 
+    padding: 11px 16px;
+    border: none;
+    border-radius: 30px;
     cursor: pointer;
-    transition: all 0.3s ease; 
-  }
+    transition: all 0.3s ease;
+}
 
-  i.fas.fa-times{
-    font-size:30px;
-  }
-  
- 
-  .botones button:hover {
-    background-color: hsl(236, 93%, 78%); 
-    transform: translateY(-2px); 
-  }
-  
-  .botones button:active {
-    transform: translateY(0); 
-  }
+i.fas.fa-times {
+    font-size: 30px;
+}
 
- 
-  @media (max-width: 767px) {
+
+.botones button:hover {
+    background-color: hsl(236, 93%, 78%);
+    transform: translateY(-2px);
+}
+
+.botones button:active {
+    transform: translateY(0);
+}
+
+
+@media (max-width: 767px) {
     div.react-chatbot-kit-chat-container {
-        width: 335px; 
-        height: 300px; 
-        right: 40px; 
-        bottom: 320px; 
+        width: 335px;
+        height: 300px;
+        right: 40px;
+        bottom: 320px;
     }
-} 
- @media (min-width: 769px) and (max-width: 1024px) {
+    div.react-chatbot-kit-chat-bot-message {
+        width: 70%;
+        right: 30px;
+    }
+}
+
+
+@media (min-width: 769px) and (max-width: 1024px) {
     div.react-chatbot-kit-chat-container {
-        width: 600px; 
-        height: 550px; 
-        right: 40px; 
-        bottom: 180px; 
+        width: 600px;
+        height: 550px;
+        right: 40px;
+        bottom: 180px;
     }
 }
 
@@ -284,11 +289,11 @@ div.react-chatbot-kit-error-docs {}
     }
 }
 
- @media (min-width: 3841px) {
- div.react-chatbot-kit-chat-container {
-    width: 800px; 
-    height: 600px;
-    right: 150px; 
-    bottom: 300px;
+@media (min-width: 3841px) {
+    div.react-chatbot-kit-chat-container {
+        width: 800px;
+        height: 600px;
+        right: 150px;
+        bottom: 300px;
+    }
 }
- }
