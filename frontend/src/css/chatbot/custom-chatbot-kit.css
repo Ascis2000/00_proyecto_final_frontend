@@ -25,12 +25,12 @@ div.react-chatbot-kit-chat-inner-container {
 }
 
 div.react-chatbot-kit-chat-inner-container .header {
-    padding: 5px;
+    padding: 10px;
     color: white;
-    background-color: #f393c8c2;
+    background-color: rgb(188, 75, 201);
     border-radius: 3px 3px 1px 1px;
 
-  
+  font-weight:bold;
 }
 
 div.react-chatbot-kit-chat-header {}
@@ -111,7 +111,7 @@ div.react-chatbot-kit-user-avatar-container {
 
 div.react-chatbot-kit-chat-bot-avatar-container {
     content: "E";
-    background-color: hsl(0, 0%, 90%);
+    background-color: hsl(300, 33%, 99%);
 }
 
 div.react-chatbot-kit-chat-bot-avatar-icon {}
@@ -122,10 +122,10 @@ div .react-chatbot-kit-chat-bot-message-container .react-chatbot-kit-chat-bot-av
 }
 
 p.react-chatbot-kit-chat-bot-avatar-letter::before {
-    content: "C";
+    content: "E";
     font-size: 24px;
     font-weight: bold;
-    color: rgb(239, 159, 219);
+    color: rgb(197, 66, 164);
     display: block;
     position: absolute;
     top: 50%;
@@ -149,7 +149,7 @@ div.react-chatbot-kit-user-chat-message-arrow {
 
 div.react-chatbot-kit-chat-bot-message {
     width: 70%;
-    right: 50px;
+    right: 75px;
 }
 
 div.react-chatbot-kit-chat-bot-message-arrow {}
@@ -177,29 +177,30 @@ div.react-chatbot-kit-error-docs {}
     display: flex;
     flex-direction: column;
     gap: 5px;
-    margin-top: 5px;
     align-content: space-around;
     align-items: center;
-    padding: 5px;
-    margin: 2px;
-    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 5px 10px 5px;
+    border-radius: 10px;
     background-color: rgb(240, 229, 238);
-    margin-bottom: 22px;
 }
 
 .react-chatbot-kit-chat-message-container .boxPreguntas button {
     width: 200px;
     padding: 10px;
-    background-color: hsl(302, 43%, 74%);
-    color: white;
+    background-color: rgb(198, 152, 206);
+    color: rgb(135, 50, 135);
     border: none;
     border-radius: 5px;
     cursor: pointer;
     word-wrap: break-word;
+    font-weight: bold;
+    transition: color 0.3s ease, background-color 0.3s ease;
 }
 
 .react-chatbot-kit-chat-message-container .boxPreguntas button:hover {
-    background-color: #b19cb1;
+    color: rgb(95, 41, 95);
+    background-color: rgb(184, 125, 195);
 }
 
 .react-chatbot-kit-user-chat-message-container {

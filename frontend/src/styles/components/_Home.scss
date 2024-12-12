@@ -13,6 +13,8 @@
     left: 0;
     z-index: -1; /* Asegura que la imagen quede detrás del contenido */
     background-color: #f0f0f0; /* Color de fondo por si la imagen no carga */
+
+    opacity: 0.1;
   }
 }
 
@@ -25,7 +27,7 @@
   }
 
   .home-background {
-    object-fit: contain; /* Ajusta para mostrar toda la imagen */
+    object-fit: cover; /* Ajusta para mostrar toda la imagen */
   }
 }
 

@@ -6,7 +6,7 @@ import UserForm from '../../../components/Main/ChatBot/UserForm';
 import StartOptions from '../../../components/Main/StartOptions/StartOptions';
 import ShowHTML from '../../../components/Main/ShowHTML/ShowHTML';
 
-const botName = 'Cristina';
+const botName = 'EVE';
 
 const headerWidget = () => React.createElement(
 	'div',
