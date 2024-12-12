@@ -37,6 +37,7 @@ const Header = () => {
         const decodedToken = jwt_decode(token);
         setIsAuthenticated(true);
         setUserRole(decodedToken.rol); // Actualizar rol tras iniciar sesión
+        window.location.reload(); // Recargar la página después del login
       } catch (err) {
         console.error("Error al decodificar el token durante login:", err);
       }
@@ -49,6 +50,7 @@ const Header = () => {
       Cookies.remove('token');
       setIsAuthenticated(false);
       setUserRole(null); // Limpiar rol del usuario tras cerrar sesión
+      window.location.reload(); // Recargar la página después del logout
     } catch (err) {
       console.error("Error en el logout:", err);
     }
