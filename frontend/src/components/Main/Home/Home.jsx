@@ -4,8 +4,8 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import utilsToken from "../../../utils/token.js";
 import { AuthContext } from "../../../context/AuthContext";
-import serviceMovies from '../../../services/movies.service.js';
 import { API_URL } from '../../../config/config.js';
+import "../../../styles/components/_Home.scss";
 
 const Home = () => {
 
@@ -19,7 +19,7 @@ const Home = () => {
 
 		const fetchInicio = async () => {
 			try {
-				const response = await fetch(`${API_URL}/`, {
+				const response = await fetch(`${API_URL}`, {
 				//const response = await fetch(`http://localhost:3000/`, {
 					method: "GET",
 					headers: { "Content-Type": "application/json" },
@@ -29,7 +29,7 @@ const Home = () => {
 				console.log("data", data)
 			
 			} catch (err) {
-				console.error("Error al obtener las películas:", err);
+				console.error("HOME: Error al obtener API:", err);
 			}
 		};
 
@@ -37,28 +37,15 @@ const Home = () => {
 	}, [isAuthenticated, user]);
 	
 	return (
-		<div className="home">
-			{
-				isAuthenticated ? (
-					<>
-						<h2>Usuario: {user?.nombre}</h2>
-						<p>Tu tipo de rol actual es:
-							{
-								user?.role == 1 ? " No Premium" :
-								user?.role == 2 ? " Premium" : " Admin"
-							}
-						</p>
-					</>
-				) : (
-					<>
-						<div>
-							<h2>Bienvenid@ al Proyecto Final</h2>
-						</div>
-					</>
-				)
-			}
-		</div>
-	);
+			<div className="home-container">
+			  <img
+				src="/home.png"
+				alt="Fondo de Home"
+				className="home-background"
+			  />
+			  
+			</div>
+		  );
 };
 
 export default Home;

@@ -6,17 +6,20 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import Main from './components/Main';
 import Footer from './components/Footer';
+import "./styles/styles.scss";
+
+
 
 const App = () => {
 	return (
 		<div className="boxApp">
-		<AuthProvider>
-			<BrowserRouter>
-				<Header />
-				<Main />
-				<Footer />
-			</BrowserRouter>
-		</AuthProvider>
+			<AuthProvider>
+				<BrowserRouter>
+					<Header />
+					<Main/>
+					<Footer />
+				</BrowserRouter>
+			</AuthProvider>
 		</div>
 	);
 };

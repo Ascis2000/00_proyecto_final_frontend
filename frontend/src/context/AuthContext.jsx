@@ -32,10 +32,10 @@ export const AuthProvider = ({ children }) => {
     const getUserData = (token) => {
         try {
             const decodedToken = jwt_decode(token);
-            const userId = decodedToken.id;
+            const adminId = decodedToken.administrador_id;
 
             // Ejem: http://localhost:3000/api/users/10
-            fetch(`http://localhost:3000/api/users/${userId}`, {
+            fetch(`http://localhost:3000/api/auth/${adminId}`, {
                 method: "GET",
                 headers: {
                     Authorization: `Bearer ${token}`,

@@ -1,0 +1,95 @@
+.admin-profile__button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  height: 100vh;
+  padding: 2rem;
+}
+
+.admin-profile__button {
+  padding: 15px; /* Incremento inicial del padding */
+  font-size: 16px; /* Tamaño inicial del texto */
+  font-weight: bold;
+  border-radius: 40px; /* Curvatura inicial */
+  cursor: pointer;
+  background-color: #44bac1;
+  color: white;
+  border: none;
+  text-align: center;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #9C4AA0;
+  }
+}
+
+/* Media Queries */
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+  .admin-profile__button-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .admin-profile__button {
+    padding: 15px; /* Botones más pequeños */
+    font-size: 14px; /* Texto más reducido */
+    border-radius: 30px; /* Curvatura más compacta */
+  }
+}
+
+/* Tablets pequeñas */
+@media (min-width: 481px) and (max-width: 768px) {
+  .admin-profile__button-container {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .admin-profile__button {
+    padding: 20px; /* Botones medianos */
+    font-size: 15px; /* Ajuste del tamaño de texto */
+    border-radius: 35px; /* Ligera curvatura */
+  }
+}
+
+/* Portátiles pequeños */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .admin-profile__button-container {
+    flex-direction: row;
+    gap: 2rem;
+  }
+
+  .admin-profile__button {
+    padding: 26px; /* Botones estándar */
+    font-size: 16px; /* Texto consistente */
+    border-radius: 40px; /* Mantén la curvatura inicial */
+  }
+}
+
+/* Sobremesas */
+@media (min-width: 1025px) and (max-width: 3840px) {
+  .admin-profile__button-container {
+    gap: 2.5rem;
+  }
+
+  .admin-profile__button {
+    padding: 30px; /* Botones más grandes */
+    font-size: 18px; /* Texto más prominente */
+    border-radius: 45px; /* Curvatura elegante */
+  }
+}
+
+/* Pantallas muy grandes */
+@media (min-width: 3841px) {
+  .admin-profile__button-container {
+    gap: 3rem;
+  }
+
+  .admin-profile__button {
+    padding: 50px; /* Botones amplios */
+    font-size: 20px; /* Texto destacado */
+    border-radius: 50px; /* Curvatura estilizada */
+  }
+}
