@@ -48,29 +48,21 @@ function Main() {
         </div>
       )}
 
-      <Routes>
-        {/* Rutas públicas */}
-        <Route path="/" element={<Home />} />
-        <Route path="/chatbot" element={<ChatBot />} />
+<Routes>
+  {/* Rutas públicas */}
+  <Route path="/" element={<Home />} />
+  <Route path="/chatbot" element={<ChatBot />} />
 
-        {/* Ruta pública para /admin */}
-        <Route path="/admin" element={<Home />} />
+  {/* Ruta pública para /admin */}
+  <Route path="/admin" element={<Home />} />
 
-        {/* Rutas protegidas */}
-        <Route
-          path="/admin/*"
-          element={
-            <ProtectedRoute>
-              <Routes>
-                <Route path="profile" element={<AdminProfile />} />
-                <Route path="charts" element={<ChartDashboard />} />
-                <Route path="modchatbot" element={<ModChatbot />} />
-                <Route path="probandoapi" element={<ProbandoApi />} />
-              </Routes>
-            </ProtectedRoute>
-          }
-        />
-      </Routes>
+  {/* Rutas sin protección */}
+  <Route path="/admin/profile" element={<AdminProfile />} />
+  <Route path="/admin/charts" element={<ChartDashboard />} />
+  <Route path="/admin/modchatbot" element={<ModChatbot />} />
+  <Route path="/admin/probandoapi" element={<ProbandoApi />} />
+</Routes>
+
     </main>
   );
 }
